@@ -6,10 +6,11 @@ const Textarea = ({
   required,
   placeholder,
   resize,
+  color,
 }) => {
   return (
     <textarea
-      className={`${className} w-full px-2 py-4 bg-${varient} border border-gray-300 rounded-sm resize-${resize} text-gray-600 text-sm font-normal leading-none tracking-normal outline-none focus:border-[#0069A8] transition-all duration-200 ease-in-out`}
+      className={`w-full px-2 py-4 bg-${varient} border border-gray-300 rounded-sm resize-${resize} text-${color} text-sm font-normal leading-none tracking-normal outline-none focus:border-[#0069A8] transition-all duration-200 ease-in-out ${className}`}
       disabled={disabled}
       required={required}
       placeholder={placeholder}
