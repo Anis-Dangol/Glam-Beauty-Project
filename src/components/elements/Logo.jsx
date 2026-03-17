@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import React from "react";
 
-const Logo = () => {
-    return (
-    <Link to="/" className="font-bold text-[20px] text-[#5B4636] py-4">
+const Logo = ({className}) =>{
+    return(
+    <div className={`bg-white py-[16px] text-[#5B4636] text-[20px] font-bold ${className}`}>
         Glam Beauty
-    </Link>
+    </div>
     );
 };
 
