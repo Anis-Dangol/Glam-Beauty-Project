@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
-@theme{
-    
+@theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-primary: #ffefe0;
+  --color-primary-100: #ffefe0;
+  --color-primary-200: #895e39;
+  --color-primary-300: #5b4636;
+
+  --color-warning: #ff0000;
+  --color-success: #008000;
+
+  --font-family: "Inter", sans-serif;
 }
