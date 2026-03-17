@@ -12,5 +12,25 @@
   --color-warning: #ff0000;
   --color-success: #008000;
 
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f4f5f7;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Yellow */
+  --color-yellow-50: #f9fafb;
+  --color-yellow-100: #f4f5f7;
+  --color-yellow-200: #fde68a;
+  --color-yellow-300: #f59e0b;
+  --color-yellow-400: #92400e;
+  --color-yellow-500: #78350f;
+  --color-yellow-600: #451a03;
+
   --font-family: "Inter", sans-serif;
 }
