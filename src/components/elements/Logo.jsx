@@ -1,8 +1,8 @@
 import React from "react";
 
-const Logo = () =>{
+const Logo = ({className}) =>{
     return(
-    <div className="bg-white py-[16px] px-[8px] rounded text-[#5B4636] text-[20px] font-bold">
+    <div className={`bg-white py-[16px] text-[#5B4636] text-[20px] font-bold ${className}`}>
         Glam Beauty
     </div>
     );
