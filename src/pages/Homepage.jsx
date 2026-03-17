@@ -1,9 +1,10 @@
 import React from 'react'
+import Logo from '../components/elements/Logo';
 
 const Homepage = () => {
   return (
-    <div>Homepage</div>
-  )
-}
+    <Logo/>
+  );
+};
 
 export default Homepage

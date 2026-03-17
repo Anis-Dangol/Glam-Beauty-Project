@@ -1,7 +1,8 @@
 import React from "react";
+import Homepage from "../pages/Homepage";
 
 const Routes = () => {
-  return <div>Routes</div>;
+  return <Homepage/>;
 };
 
 export default Routes;
