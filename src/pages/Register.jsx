@@ -1,18 +1,14 @@
 import { MdOutlineMail } from "react-icons/md";
 import { SlLock } from "react-icons/sl";
-import loginImage from "../assets/loginImage.jpg";
+
 import InputWithIcon from "../components/widgets/InputWithIcon";
 import Input from "../components/elements/Input";
 import Button from "../components/elements/Button";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div
-      className="grow flex items-center justify-center px-6 bg-no-repeat bg-right bg-cover"
-      style={{ backgroundImage: `url(${loginImage})` }}
-    >
-      <div className="w-full max-w-80.5 -translate-x-25">
-        <div className="space-y-2 text-center p-2">
+    <div className="space-y-2 text-center p-2">
           <h1 className="text-[16px] tracking-[3px] text-[#5B4636] font-bold pb-3">
             CREATE AN ACCOUNT
           </h1>
@@ -60,13 +56,11 @@ const Register = () => {
 
           <p className="text-xs text-start text-gray-500 py-2">
             Already have an account?{" "}
-            <span className="text-[#8A6A45] cursor-pointer">
+            <Link to="/login" className="text-[#8A6A45] cursor-pointer">
               Login
-            </span>
+            </Link>
           </p>
         </div>
-      </div>
-    </div>
   );
 };
 
