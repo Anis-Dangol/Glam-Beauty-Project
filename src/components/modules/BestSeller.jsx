@@ -15,7 +15,7 @@ const bestSellerArray = [
 
 const BestSeller = () => {
   return (
-    <section className="px-27 flex flex-col gap-4">
+    <section className="pl-27 flex flex-col gap-4">
       <div>
         <h2 className="py-2">BESTSELLER</h2>
         <div className="flex justify-between items-center py-2">
@@ -32,7 +32,7 @@ const BestSeller = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-6 ">
+      <div className="flex gap-6 overflow-x-hidden">
         {bestSellerArray.map((c) => {
           return (
             <Card
