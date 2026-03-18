@@ -1,10 +1,11 @@
 import React from "react";
 
-import loginImage from "../../assets/loginImage.jpg";
+import loginImage from "../assets/loginImage.jpg";
 import InputWithIcon from "../components/widgets/InputWithIcon";
 import { MdEmail } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
 import { SlLock } from "react-icons/sl";
+import Button from "../components/elements/Button";
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
       className="min-h-screen flex items-center justify-center px-6 bg-no-repeat bg-right bg-cover"
       style={{ backgroundImage: `url(${loginImage})` }}
     >
-      <div className="w-full max-w-80.5 -translate-x-25">
+      <div className="w-full max-w-80.5 -translate-25">
         <div className="space-y-2 text-center p-2">
           <h1 className="text-[16px] tracking-[3px] text-[#5B4636] font-bold pb-3">
             LOGIN
@@ -37,7 +38,7 @@ const Login = () => {
             Forgot password?
           </div>
 
-          <button className="w-full bg-[#895E39] rounded-sm py-1 text-white text-sm">Log In</button>
+          <Button className="bg-[#895E39] rounded-sm py-2 text-white text-sm">Login</Button>
 
           <p className="text-xs text-start text-gray-500 py-2">
             Don't have an account yet?{" "}
