@@ -4,7 +4,7 @@ const Button = ({ children, onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className={`w-full text-sm py-2 text-center rounded-sm ${className}`}
+      className={`w-full text-sm py-2 text-center rounded-sm cursor-pointer ${className}`}
     >
       {children}
     </button>
