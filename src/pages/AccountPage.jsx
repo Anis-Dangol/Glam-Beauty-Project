@@ -2,7 +2,7 @@ import Button from "../components/elements/Button";
 
 const AccountPage = () => {
   return (
-    <section>
+    <section className="flex flex-col gap-10">
       <h2 className="px-27 py-2 font-bold text-xl text-black">MY ACCOUNT</h2>
       <div className="flex gap-6">
         <div>
