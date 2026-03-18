@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --color-white: #ffffff;
   --color-black: #000000;
@@ -34,3 +35,4 @@
 
   --font-family: "Inter", sans-serif;
 }
+
