@@ -7,6 +7,7 @@ const Textarea = ({
   placeholder,
   resize,
   color,
+  ...props
 }) => {
   return (
     <textarea
@@ -14,6 +15,7 @@ const Textarea = ({
       disabled={disabled}
       required={required}
       placeholder={placeholder}
+      {...props}
     >
       {label}
     </textarea>
