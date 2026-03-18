@@ -38,7 +38,9 @@ const Card = ({
           </div>
         )}
         {cardButton && (
-          <Button className={"border border-primary-300 py-4!"}>
+          <Button
+            className={"border border-primary-300 text-primary-300 py-4!"}
+          >
             {cardButton}
           </Button>
         )}
