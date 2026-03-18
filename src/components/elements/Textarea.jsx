@@ -1,12 +1,13 @@
 const Textarea = ({
   className = "",
   varient,
-  label,
   disabled,
+  value,
   required,
   placeholder,
   resize,
   color,
+  onChange,
   ...props
 }) => {
   return (
@@ -16,9 +17,9 @@ const Textarea = ({
       required={required}
       placeholder={placeholder}
       {...props}
-    >
-      {label}
-    </textarea>
+      value={value}
+      onChange={onChange}
+    />
   );
 };
 
