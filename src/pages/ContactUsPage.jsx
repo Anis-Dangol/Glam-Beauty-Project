@@ -47,7 +47,7 @@ const ContactUsPage = () => {
           <Textarea placeholder="Message" rows={10} disabled={false} value={text}
   onChange={(e) => setText(e.target.value)} />
 
-          <Button className="text-[#5B4636] text-[16px] border border-[#5B4636] -mt-1 py-4">
+          <Button className="text-[#5B4636] text-[16px] border border-[#5B4636] -mt-1 py-4 obej">
             Send Message
           </Button>
         </div>

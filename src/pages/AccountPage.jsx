@@ -51,7 +51,7 @@ const AccountPage = () => {
               <Button
                 children={"Change Default Address"}
                 className={
-                  "border rounded-xs! border-gray-500 text-gray-500 font-semibold text-sm"
+                  "border rounded-xs! border-gray-500 text-gray-500 font-semibold text-sm p-2"
                 }
               />
             </div>
