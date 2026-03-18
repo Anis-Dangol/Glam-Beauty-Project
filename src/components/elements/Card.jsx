@@ -12,7 +12,7 @@ const Card = ({
   cardButton,
 }) => {
   return (
-    <div className="flex flex-row justify-center p-10">
+    <div className="flex flex-row justify-center">
       <div>
         <div className="relative">
           <img
