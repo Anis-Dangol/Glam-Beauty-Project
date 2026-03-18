@@ -56,40 +56,40 @@ const Checkout = () => {
             </div>
           </div>
 
-          <h2 className="text-lg font-semibold">PAYMENT</h2>
+          <h2 className="text-lg font-bold">PAYMENT</h2>
 
           <div className="flex flex-col gap-3">
             <div className="flex justify-between">
               <label className="flex items-center gap-2">
-                <input type="radio" name="payment" />
+                <input type="radio" name="payment" className="accent-[#5B4636] scale-100 checked:scale-140 transition-all duration-200"/>
                 Bank
               </label>
-              <div className="flex gap-[10px]">
+              <div className="flex gap-2.5">
                 <img
                   src={CheckoutNic}
                   alt="Nic"
-                  className="w-[50px] h-[50px]"
+                  className="w-12.5"
                 />
                 <img
                   src={CheckoutNabil}
                   alt="Nabil"
-                  className="w-[50px] h-[50px]"
+                  className="w-12.5"
                 />
                 <img
                   src={CheckoutKhalti}
                   alt="khalti"
-                  className="w-[50px] h-[50px]"
+                  className="w-12.5"
                 />
                 <img
                   src={CheckOutEsewa}
                   alt="esewa"
-                  className="w-[50px] h-[50px]"
+                  className="w-12.5"
                 />
               </div>
             </div>
 
             <label className="flex items-center gap-2">
-              <input type="radio" name="payment" />
+              <input type="radio" name="payment" className=" accent-[#5B4636] scale-100 checked:scale-140 transition-all duration-100"/>
               Cash on delivery
             </label>
           </div>
