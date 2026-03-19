@@ -41,7 +41,7 @@ const ArrroBackward = () => {
 }
 
   return (
-    <section className="w-full h-[90vh] bg-white flex flex-col gap-4 px-27">
+    <section className="w-full bg-white flex flex-col gap-4 px-27">
         <div className="flex justify-between items-center py-2">
           <p className="font-bold text-base text-primary-300 tracking-[10%]">
             FOUNDATION SHADE FINDER
