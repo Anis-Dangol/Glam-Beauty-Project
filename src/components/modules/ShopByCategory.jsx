@@ -22,7 +22,7 @@ const ShopByCategory = () => {
             <IoIosArrowBack size={40} />
           </span>
           <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
-            <IoIosArrowForward size={40} className="" />
+            <IoIosArrowForward size={40} />
           </span>
         </div>
       </div>
