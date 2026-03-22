@@ -3,6 +3,7 @@ import Button from "./Button";
 
 const Card = ({
   cardId,
+  silderClassName,
   cardImage,
   ImageClassName,
   imageCenterLabelColor = "white",
@@ -16,7 +17,7 @@ const Card = ({
   return (
     <div className="flex flex-row justify-center">
       <div>
-        <div id={cardId} className="relative w-93 h-93">
+        <div id={cardId} className={`relative ${silderClassName}`}>
           <Link to={`productdetails/${cardId}`}>
             <img
               src={cardImage}

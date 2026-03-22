@@ -62,6 +62,7 @@ const BestSeller = () => {
               c.isBestSeller === true && (
                 <Card
                   key={c.id}
+                  silderClassName={"w-93 h-93"}
                   cardId={c.id}
                   cardImage={c.image}
                   ImageClassName={"cursor-pointer"}
