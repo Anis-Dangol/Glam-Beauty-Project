@@ -1,6 +1,4 @@
-
 import { createBrowserRouter } from "react-router-dom";
-
 
 import { RouterProvider } from "react-router-dom";
 import AuthLayout from "../layout/AuthLayout";
@@ -29,25 +27,54 @@ const router = createBrowserRouter([
     path: "/",
     element: <PageLayout />,
     children: [
-      { index:true, element: <Homepage /> },
-      { path:"aboutus", element: <Aboutpage /> },
-      { path:"account", element: <AccountPage /> },
-      { path:"contactus", element: <ContactUsPage /> },
-      { path:"cart", element: <CartPage /> },
-      { path:"checkout", element: <Checkout /> },
-      { path:"wishlist", element: <Wishlist /> },
-      { path:"productdetails/:id", element: <ProductDetails /> },
+      { index: true, element: <Homepage /> },
+      { path: "aboutus", element: <Aboutpage /> },
+      {
+        path: "account",
+        element: (
+          <ProtectedRoute>
+            <AccountPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "contactus",
+        element: (
+          <ProtectedRoute>
+            <AccountPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <CartPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "checkout",
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <ProtectedRoute>
+            <Wishlist />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);
 
 const Router = () => {
-  return (
-    
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default Router;
-
-

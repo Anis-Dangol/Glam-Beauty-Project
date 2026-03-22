@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import InputWithIcon from "../components/widgets/InputWithIcon";
 import { MdOutlineMail } from "react-icons/md";
 import { SlLock } from "react-icons/sl";
 import Button from "../components/elements/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { getData } from "../services/storage";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -53,14 +54,7 @@ const Login = () => {
       setErrors(validationErrors);
       return;
     }
-
-    const users = getData("users");
-
-    const user = users.find(
-      (u) =>
-        u.email === form.email.toLowerCase().trim() &&
-        u.password === form.password
-    );
+    const user=login(form)
 
     if (!user) {
       setErrors({
@@ -71,8 +65,6 @@ const Login = () => {
     }
 
     localStorage.setItem("currentUser", JSON.stringify(user));
-
-  
     navigate("/");
   };
   return (
