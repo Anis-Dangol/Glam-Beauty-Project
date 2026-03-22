@@ -14,16 +14,23 @@ import { GoPlus } from "react-icons/go";
 
 import { useParams } from "react-router-dom";
 import products from "../data/product.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProductDetails = () => {
   const productId = useParams();
   const [quantity, setQuantity] = useState(1);
   const [favourite, setFavourite] = useState(false);
+  const [showImage, setShowImage] = useState(1);
 
   const currentProduct = products.find(
     (p) => Number(p.id) == Number(productId.id),
   );
+  console.log(showImage)
+
+  useEffect(() => {
+    console.log("showImage")
+    console.log(showImage)
+  },[showImage])
 
   const quantityIncrement = () => setQuantity((prev) => prev + 1);
   const quantityDecrement = () => setQuantity((prev) => prev - 1);
@@ -33,7 +40,7 @@ const ProductDetails = () => {
   return (
     <section className="w-full flex flex-row gap-6 px-26">
       <div className="w-1/2 flex flex-row gap-6">
-        <div className="w-1/5 flex flex-col gap-4">
+        <div className="w-1/5 grid grid-rows-3 gap-4">
           {currentProduct.images.map((img, index) => (
             <div
               key={index}
@@ -41,17 +48,18 @@ const ProductDetails = () => {
             >
               <img
                 src={img}
+                onClick={() => setShowImage(index)}
                 alt={`productImage${index}`}
                 className="object-cover"
               />
             </div>
           ))}
         </div>
-        <div className="w-full flex items-center justify-center rounded-l">
+        <div className="w-full max-h-[80vh] flex items-center justify-center rounded-l">
           <img
-            src={currentProduct.image}
+            src={currentProduct.images[showImage]}
             alt={`Product Main`}
-            className="object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
