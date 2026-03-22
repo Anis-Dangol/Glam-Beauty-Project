@@ -1,9 +1,9 @@
 import productImage1 from "../assets/home/bestseller/img1.jpg";
 import productImage2 from "../assets/home/bestseller/img2.jpg";
 import productImage3 from "../assets/home/bestseller/img3.jpg";
-import productImage4 from "../assets/home/shopByCategory/img1.jpg";
-import productImage5 from "../assets/home/shopByCategory/img2.jpg";
-import productImage6 from "../assets/home/shopByCategory/img3.jpg";
+import productImage4 from "../assets/home/shopByCategory/img1.png";
+import productImage5 from "../assets/home/shopByCategory/img2.png";
+import productImage6 from "../assets/home/shopByCategory/img3.png";
 
 const products = [
   {
