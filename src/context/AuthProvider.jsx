@@ -5,16 +5,17 @@ import { getCurrentUser, logoutUser } from "../services/userService";
 import { getData } from "../services/storage";
 
 
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     return getCurrentUser();
   });
 
-  const login = async (data) => {
+  const login = (data) => {
     const users = getData("users");
 
     const userData = users.find(
-      (u) =>
+      (u) => 
         u.email === data.email.toLowerCase().trim() &&
         u.password === data.password
     );

@@ -13,6 +13,7 @@ import Homepage from "../pages/Homepage";
 import Checkout from "../pages/Checkout";
 import Wishlist from "../pages/Wishlist";
 import ProductDetails from "../pages/ProductDetails";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
         path: "contactus",
         element: (
           <ProtectedRoute>
-            <AccountPage />
+            <ContactUsPage />
           </ProtectedRoute>
         ),
       },
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      { path: "productdetails/:id", element: <ProductDetails /> },
     ],
   },
 ]);

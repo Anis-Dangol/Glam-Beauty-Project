@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/elements/Button";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const AccountPage = () => {
+  const { logout } = useContext(AuthContext);
+  const navigate=useNavigate();
+  const handleLogout=()=>{
+    logout();
+    navigate("/login");
+  }
   return (
     <section className="flex flex-col gap-10">
       <h2 className="px-27 py-2 font-bold text-xl text-black">MY ACCOUNT</h2>
@@ -21,13 +29,14 @@ const AccountPage = () => {
                 "bg-primary-200 text-white border border-primary-200 p-2 text-start! font-bold text-xl"
               }
             />
-            <Link to={"/login"}>
+          
             <Button
               children={"Logout"}
+              onClick={handleLogout}
               className={
                 "bg-primary-200 text-white border border-primary-200 p-2 text-start! font-bold text-xl"
               }
-            /></Link>
+            />
           </div>
         </div>
         <div className="flex flex-col gap-6 px-27">
