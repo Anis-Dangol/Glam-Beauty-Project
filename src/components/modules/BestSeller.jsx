@@ -1,20 +1,9 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Image1 from "../../assets/home/bestseller/img1.jpg";
-import Image2 from "../../assets/home/bestseller/img2.jpg";
-import Image3 from "../../assets/home/bestseller/img3.jpg";
 import Card from "../elements/Card";
 import { useEffect, useRef, useState } from "react";
 import Button from "../elements/Button";
 import { Link } from "react-router-dom";
-
-const bestSellerArray = [
-  { cardImage: Image1 },
-  { cardImage: Image2 },
-  { cardImage: Image3 },
-  { cardImage: Image1 },
-  { cardImage: Image2 },
-  { cardImage: Image3 },
-];
+import products from "../../data/product";
 
 const BestSeller = () => {
   const [index, setIndex] = useState(0);
@@ -24,9 +13,9 @@ const BestSeller = () => {
   const translateX = index * (width / 3);
 
   const nextSlide = () => {
-    if (index < bestSellerArray.length - 3) {
-      setIndex(index + 1);
-    }
+    // if (index < bestSellerArray.length - 3) {
+    //   setIndex(index + 1);
+    // }
   };
 
   const prevSlide = () => {
@@ -34,10 +23,6 @@ const BestSeller = () => {
       setIndex(index - 1);
     }
   };
-
-  console.log("width" + width);
-  console.log("translateX" + translateX);
-  console.log("index" + index);
 
   useEffect(() => {
     if (elementRef.current) {
@@ -71,18 +56,21 @@ const BestSeller = () => {
         </div>
       </div>
       <div className="w-full overflow-x-hidden" ref={elementRef}>
-        <div className={`flex gap-6 translate-x-[-${translateX}px] duration-500`}>
-          {bestSellerArray.map((c, i) => {
+        <div className={`flex gap-6 `}>
+          {products.map((c, i) => {
             return (
-              <Card
-                key={i}
-                cardImage={c.cardImage}
-                ImageClassName={"max-w-93 cursor-pointer"}
-                cardTitle={"Matte Lip Gloss"}
-                cardCategory={"Lips"}
-                cardPrice={"$8.00"}
-                cardButton={"ADD TO CART"}
-              />
+              c.isBestSeller === true && (
+                <Card
+                  key={c.id}
+                  cardId={c.id}
+                  cardImage={c.image}
+                  ImageClassName={"cursor-pointer"}
+                  cardTitle={c.title}
+                  cardCategory={c.category}
+                  cardPrice={`${c.price}`}
+                  cardButton={"ADD TO CART"}
+                />
+              )
             );
           })}
           <Link to={"/shop"} className="flex flex-row justify-center">
