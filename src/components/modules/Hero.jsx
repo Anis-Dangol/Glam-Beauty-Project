@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HeroBanner from "../../assets/home/hero.jpg";
 import Button from "../elements/Button";
 
@@ -12,7 +13,7 @@ const Hero = () => {
           <p className="font-extrabold text-[40px] p-2">SITEWIDE</p>
           <p className="font-bold text-[20px] p-2">free gift with any Rs 2000+ order</p>
         </div>
-        <Button className={"bg-white py-4! font-bold text-xl"}>SHOP NOW</Button>
+        <Link to={"/shop"}><Button className={"bg-white py-4! font-bold text-xl"}>SHOP NOW</Button></Link>
       </div>
     </section>
   );

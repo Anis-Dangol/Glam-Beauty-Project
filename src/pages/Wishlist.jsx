@@ -7,17 +7,17 @@ import Hydratingprimer from "../assets/Wishlist/wishlist-Hydrating Primer.png";
 import Matteliquidlipstick from "../assets/Wishlist/wishlist-Matte Liquid Lipstick.png";
 import Nourishingfaceoil from "../assets/Wishlist/wishlist-Nourishing Face Oil.png";
 import Soothingfacialmist from "../assets/Wishlist/wishlist-Soothing Facial Mist.png";
-import { IoChevronForward, IoChevronBack } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const Wishlish = () => {
+const Wishlist = () => {
   return (
     <section className="px-27 grid gap-20">
       <div className="grid gap-4">
-        <h1 className="font-bold color=[#1F2937] text-[20px]">WISHLIST (5)</h1>
+        <h1 className="font-bold color=[#1F2937] text-xl py-2">WISHLIST (5)</h1>
         <div className="flex gap-6">
           <Card
             cardImage={Mattelipgloss}
-            ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
             cardTitle="Matte Lip Gloss"
             cardCategory="Lips"
             cardPrice="$8.00"
@@ -25,7 +25,7 @@ const Wishlish = () => {
           />
           <Card
             cardImage={Liquidlipgloss}
-            ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
             cardTitle="Liquid Lip Gloss"
             cardCategory="Lips"
             cardPrice="$8.00"
@@ -33,7 +33,7 @@ const Wishlish = () => {
           />
           <Card
             cardImage={Conceler}
-            ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
             cardTitle="Concealer"
             cardCategory="Lips"
             cardPrice="$8.00"
@@ -41,7 +41,7 @@ const Wishlish = () => {
           />
           <Card
             cardImage={Settingspray}
-            ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
             cardTitle="Setting Spray"
             cardCategory="Lips"
             cardPrice="$10.00"
@@ -49,23 +49,22 @@ const Wishlish = () => {
           />
         </div>
       </div>
-      <div className="grid gap-4">
-        <h1 className="font-bold color=[#1F2937] text-[20px]">FOR YOU</h1>
-        <div className="relative flex">
-          <button className="bg-[#D6B89E] h-10 w-10 text-white rounded-full font-bold text-2xl flex items-center justify-center absolute right-0 top-1 cursor-pointer">
-            <IoChevronForward />
-          </button>
-
-          <button className="bg-white border-2 border-[#D6B89E] text-[#D6B89E] rounded-full h-10 w-10 font-bold text-2xl flex items-center justify-center absolute right-12 top-1 cursor-pointer">
-            <IoChevronBack />
-          </button>
+      <div className="gap-4">
+        <h1 className="font-bold text-gray-800 text-xl py-2">FOR YOU</h1>
+        <div className="flex justify-end gap-2 py-2">
+          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
+            <IoIosArrowBack size={40} />
+          </span>
+          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
+            <IoIosArrowForward size={40} />
+          </span>
         </div>
       </div>
 
       <div className="flex gap-6">
         <Card
           cardImage={Nourishingfaceoil}
-          ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
           cardTitle="Nourishing Face Oil"
           cardCategory="Face"
           cardPrice="$18.00"
@@ -73,7 +72,7 @@ const Wishlish = () => {
         />
         <Card
           cardImage={Hydratingprimer}
-          ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
           cardTitle="Hydrating Primer"
           cardCategory="Face"
           cardPrice="$15.00"
@@ -81,7 +80,7 @@ const Wishlish = () => {
         />
         <Card
           cardImage={Matteliquidlipstick}
-          ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
           cardTitle="Matte Liquid Lipstick"
           cardCategory="Face"
           cardPrice="$10.00"
@@ -89,7 +88,7 @@ const Wishlish = () => {
         />
         <Card
           cardImage={Soothingfacialmist}
-          ImageClassName="w-90 h-90 object-cover rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
           cardTitle="Soothing Facial Mist"
           cardCategory="Face"
           cardPrice="$12.00"
@@ -100,4 +99,4 @@ const Wishlish = () => {
   );
 };
 
-export default Wishlish;
+export default Wishlist;
