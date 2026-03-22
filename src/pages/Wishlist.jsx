@@ -8,93 +8,119 @@ import Hydratingprimer from "../assets/Wishlist/wishlist-Hydrating Primer.png";
 import Matteliquidlipstick from "../assets/Wishlist/wishlist-Matte Liquid Lipstick.png";
 import Nourishingfaceoil from "../assets/Wishlist/wishlist-Nourishing Face Oil.png";
 import Soothingfacialmist from "../assets/Wishlist/wishlist-Soothing Facial Mist.png";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
 const Wishlist = () => {
-  return (
-    <section className="px-27 grid gap-20">
-      <div className="grid gap-4">
-        <h1 className="font-bold color=[#1F2937] text-xl py-2">WISHLIST (5)</h1>
-        <div className="flex gap-6">
-          <Card
-            cardImage={Mattelipgloss}
-            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-            cardTitle="Matte Lip Gloss"
-            cardCategory="Lips"
-            cardPrice="$8.00"
-            cardButton="Add to Cart"
-          />
-          <Card
-            cardImage={Liquidlipgloss}
-            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-            cardTitle="Liquid Lip Gloss"
-            cardCategory="Lips"
-            cardPrice="$8.00"
-            cardButton="Add to Cart"
-          />
-          <Card
-            cardImage={Conceler}
-            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-            cardTitle="Concealer"
-            cardCategory="Lips"
-            cardPrice="$8.00"
-            cardButton="Add to Cart"
-          />
-          <Card
-            cardImage={Settingspray}
-            ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-            cardTitle="Setting Spray"
-            cardCategory="Lips"
-            cardPrice="$10.00"
-            cardButton="Add to Cart"
-          />
-        </div>
-      </div>
-      <div className="gap-4">
-        <h1 className="font-bold text-gray-800 text-xl py-2">FOR YOU</h1>
-        <div className="flex justify-end gap-2 py-2">
-          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
-            <IoIosArrowBack size={40} />
-          </span>
-          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
-            <IoIosArrowForward size={40} />
-          </span>
-        </div>
-      </div>
+  const wishlistItems = [
+    {
+      id: 1,
+      image: Mattelipgloss,
+      title: "Matte Lip Gloss",
+      category: "Lips",
+      price: "$8.00",
+    },
+    {
+      id: 2,
+      image: Liquidlipgloss,
+      title: "Liquid Lip Gloss",
+      category: "Lips",
+      price: "$8.00",
+    },
+    {
+      id: 3,
+      image: Conceler,
+      title: "Concealer",
+      category: "Lips",
+      price: "$8.00",
+    },
+    {
+      id: 4,
+      image: Settingspray,
+      title: "Setting Spray",
+      category: "Lips",
+      price: "$10.00",
+    },
+  ];
+  const recommendedItems = [
+    {
+      id: 5,
+      image: Nourishingfaceoil,
+      title: "Nourishing Face Oil",
+      category: "Face",
+      price: "$18.00",
+    },
+    {
+      id: 6,
+      image: Hydratingprimer,
+      title: "Hydrating Primer",
+      category: "Face",
+      price: "$15.00",
+    },
+    {
+      id: 7,
+      image: Matteliquidlipstick,
+      title: "Matte Liquid Lipstick",
+      category: "Face",
+      price: "$10.00",
+    },
+    {
+      id: 8,
+      image: Soothingfacialmist,
+      title: "Soothing Facial Mist",
+      category: "Face",
+      price: "$12.00",
+    },
+  ];
 
-      <div className="flex gap-6">
-        <Card
-          cardImage={Nourishingfaceoil}
-          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-          cardTitle="Nourishing Face Oil"
-          cardCategory="Face"
-          cardPrice="$18.00"
-          cardButton="Add to Cart"
-        />
-        <Card
-          cardImage={Hydratingprimer}
-          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-          cardTitle="Hydrating Primer"
-          cardCategory="Face"
-          cardPrice="$15.00"
-          cardButton="Add to Cart"
-        />
-        <Card
-          cardImage={Matteliquidlipstick}
-          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-          cardTitle="Matte Liquid Lipstick"
-          cardCategory="Face"
-          cardPrice="$10.00"
-          cardButton="Add to Cart"
-        />
-        <Card
-          cardImage={Soothingfacialmist}
-          ImageClassName="w-90 h-90 object-cover shadow-[0px_4px_4px_0px_#00000040]"
-          cardTitle="Soothing Facial Mist"
-          cardCategory="Face"
-          cardPrice="$12.00"
-          cardButton="Add to Cart"
-        />
+  return (
+    <section className="px-6 md:px-12 lg:px-20 py-10 space-y-12">
+      <div>
+        <h1 className="font-bold text-[#1F2937] text-xl mb-6">
+          WISHLIST ({wishlistItems.length})
+        </h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {wishlistItems.map((item) => (
+            <Card
+              key={item.id}
+              cardImage={item.image}
+              ImageClassName="w-full h-64 object-cover rounded-lg shadow-md"
+              cardTitle={item.title}
+              cardCategory={item.category}
+              cardPrice={item.price}
+              cardButton="Add to Cart"
+            />
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="font-bold text-[#1F2937] text-xl">FOR YOU</h1>
+
+          <div className="flex gap-3">
+            <button className="bg-white border border-[#D6B89E] text-[#D6B89E] rounded-full h-10 w-10 flex items-center justify-center">
+              <IoChevronBack />
+            </button>
+
+            <button className="bg-[#D6B89E] text-white rounded-full h-10 w-10 flex items-center justify-center">
+              <IoChevronForward />
+            </button>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {recommendedItems.map((item) => (
+            <Card
+              key={item.id}
+              cardImage={item.image}
+              ImageClassName="w-full h-64 object-cover rounded-lg shadow-md"
+              cardTitle={item.title}
+              cardCategory={item.category}
+              cardPrice={item.price}
+              cardButton="Add to Cart"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
