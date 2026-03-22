@@ -11,7 +11,7 @@ import Soothingfacialmist from "../assets/Wishlist/wishlist-Soothing Facial Mist
 
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
-const Wishlist = () => {
+const Wishlish = () => {
   const wishlistItems = [
     {
       id: 1,
@@ -108,7 +108,6 @@ const Wishlist = () => {
             </button>
           </div>
         </div>
-          {/* hello */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {recommendedItems.map((item) => (
             <Card
@@ -127,4 +126,4 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+export default Wishlish;
