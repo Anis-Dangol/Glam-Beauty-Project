@@ -1,47 +1,122 @@
-import React from "react";
+import React, { useState } from "react";
 
 import InputWithIcon from "../components/widgets/InputWithIcon";
-import { MdEmail } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
 import { SlLock } from "react-icons/sl";
 import Button from "../components/elements/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getData } from "../services/storage";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    const email = form.email.toLowerCase().trim();
+
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+
+    if (!form.password) {
+      newErrors.password = "Password is required";
+    }
+
+    return newErrors;
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    const users = getData("users");
+
+    const user = users.find(
+      (u) =>
+        u.email === form.email.toLowerCase().trim() &&
+        u.password === form.password
+    );
+
+    if (!user) {
+      setErrors({
+        email: "Invalid email or password",
+        password: "Invalid email or password",
+      });
+      return;
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+  
+    navigate("/");
+  };
   return (
-    <div className="space-y-2 text-center p-2">
-          <h1 className="text-[16px] tracking-[3px] text-[#5B4636] font-bold pb-3">
-            LOGIN
-          </h1>
- 
-          <InputWithIcon
-            icon={MdOutlineMail}
-            placeholder="email"
-            type="text"
-            id="email"
-            name="email"
-          />
-          <InputWithIcon
-            icon={SlLock}
-            placeholder="password"
-            type="text"
-            id="password"
-            name="password"
-          />
+    <form onSubmit={handleSubmit} className="space-y-3 text-center p-2">
+      <h1 className="text-[16px] tracking-[3px] text-[#5B4636] font-bold pb-3">
+        LOGIN
+      </h1>
 
-          <div className="text-right text-xs text-gray-500 py-2">
-            Forgot password?
-          </div>
+      <InputWithIcon
+        icon={MdOutlineMail}
+        placeholder="email"
+        type="email"
+        id="email"
+        name="email"
+        value={form.email}
+        onChange={handleChange}
+        error={errors.email}
+      />
+      <InputWithIcon
+        icon={SlLock}
+        placeholder="password"
+        type="password"
+        id="password"
+        name="password"
+        value={form.password}
+        onChange={handleChange}
+        error={errors.password}
+      />
 
-          <Button className="bg-[#895E39] rounded-sm py-2 text-white text-sm">Login</Button>
+      <div className="text-right text-xs text-gray-500 py-2">
+        Forgot password?
+      </div>
 
-          <p className="text-xs text-start text-gray-500 py-2">
-            Don't have an account yet?{" "}
-            <Link to="/register" className="text-[#8A6A45] cursor-pointer">
-              create an account
-            </Link>
-          </p>
-        </div>
+      <Button type="submit" className="bg-[#895E39] rounded-sm py-2 text-white text-sm">
+        Login
+      </Button>
+
+      <p className="text-xs text-start text-gray-500 py-2">
+        Don't have an account yet?{" "}
+        <Link to="/register" className="text-[#8A6A45] cursor-pointer">
+          create an account
+        </Link>
+      </p>
+    </form>
   );
 };
 
