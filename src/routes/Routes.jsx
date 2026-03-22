@@ -12,6 +12,7 @@ import CartPage from "../pages/CartPage";
 import Homepage from "../pages/Homepage";
 import Checkout from "../pages/Checkout";
 import Wishlist from "../pages/Wishlist";
+import ProductDetails from "../pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
