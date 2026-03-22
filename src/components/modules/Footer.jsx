@@ -39,7 +39,8 @@ const Footer = () => {
         <div className="grid grid-cols-3 gap-6">
           <div className="flex flex-col gap-4">
             <p className="py-4 font-bold text-xl ">Company</p>
-            <span className="font-normal text-base">About Us</span>
+            <Link to={"/aboutus"} className="font-normal text-base">About Us</Link>
+            <Link to={"/contactus"} className="font-normal text-base">Contact Us</Link>
             <span className="font-normal text-base">Services</span>
           </div>
           <div className="flex flex-col gap-4">

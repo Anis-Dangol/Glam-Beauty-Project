@@ -24,7 +24,22 @@ import ShadeCard from "../elements/ShadeCard";
 const ShadeFinger = () => {
     const [selected, setSelected] = useState(2);
 
- 
+const ArrowForward = () => {
+  if (selected === shades.length) {
+    setSelected(1);
+  } else {
+    setSelected(selected + 1);
+  }
+}
+
+const ArrroBackward = () => {
+  if (selected === 1) {
+    setSelected(shades.length);
+  } else {
+    setSelected(selected - 1);
+  }
+}
+
   return (
     <section className="w-full bg-white flex flex-col gap-4 px-27">
         <div className="flex justify-between items-center py-2">
@@ -32,10 +47,14 @@ const ShadeFinger = () => {
             FOUNDATION SHADE FINDER
           </p>
           <div className="flex gap-2    ">
-            <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
+            <span
+            onClick={ArrroBackward}
+            className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
               <IoIosArrowBack size={40} />
             </span>
-            <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
+            <span
+            onClick={ArrowForward}
+            className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
               <IoIosArrowForward size={40} className="" />
             </span>
           </div>

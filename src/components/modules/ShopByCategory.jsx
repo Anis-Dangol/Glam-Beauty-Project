@@ -1,16 +1,37 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import React, { useState } from "react";
 import Image1 from "../../assets/home/shopByCategory/img1.png";
 import Image2 from "../../assets/home/shopByCategory/img2.png";
 import Image3 from "../../assets/home/shopByCategory/img3.png";
+import Image4 from "../../assets/home/shopByCategory/img4.png";
 
-import Card from "../elements/Card";
 const bestSellerArray = [
   { cardImage: Image1, imageCenterLabel: "LIPS" },
   { cardImage: Image2, imageCenterLabel: "FRAGNANCE" },
   { cardImage: Image3, imageCenterLabel: "FACE" },
+  { cardImage: Image4, imageCenterLabel: "MAKEUP" },
+
 ];
 
 const ShopByCategory = () => {
+
+  const [startIndex, setStartIndex] = useState(0);
+
+  const visibleCount = 3;
+
+  const handleNext = () => {
+    setStartIndex((startIndex + 1) % bestSellerArray.length)
+  };
+  
+  const handlePrevious = () => {
+  setStartIndex((startIndex - 1 + bestSellerArray.length) % bestSellerArray.length);
+  };
+
+  const visibleCards = Array.from(
+    { length: visibleCount },
+    (_, i) => bestSellerArray[(startIndex + i) % bestSellerArray.length]
+  );
+
   return (
     <section className="px-27 flex flex-col gap-4">
       <div className="flex justify-between items-center py-2">
@@ -19,17 +40,21 @@ const ShopByCategory = () => {
         </p>
         <div className="flex gap-2">
           <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
-            <IoIosArrowBack size={40} />
+            <IoIosArrowBack
+            onClick={handlePrevious}
+            size={40} />
           </span>
           <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
-            <IoIosArrowForward size={40} className="" />
+            <IoIosArrowForward
+            onClick={handleNext}
+            size={40} />
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-6">
-        {bestSellerArray.map((c) => {
+      <div className="flex flex-row gap-6">
+        {visibleCards.map((c, index) => {
           return (
-            <div className="w-full h-98 relative">
+            <div className="w-full h-98 relative ">
               <img
                 src={c.cardImage}
                 alt=""

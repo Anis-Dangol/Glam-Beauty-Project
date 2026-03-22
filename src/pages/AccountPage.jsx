@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/elements/Button";
 
 const AccountPage = () => {
@@ -7,24 +8,26 @@ const AccountPage = () => {
       <div className="flex gap-6">
         <div>
           <div className="flex flex-col gap-4 border-r border-primary-200 px-27">
-            <Button
-              children={"Personal Information"}
-              className={
-                "bg-white border border-primary-200 p-2 pr-15 text-start! font-bold text-xl"
-              }
-            />
+            
+              <Button
+                children={"Personal Information"}
+                className={
+                  "bg-white border border-primary-200 p-2 pr-15 text-start! font-bold text-xl"
+                }
+              />
             <Button
               children={"Order History"}
               className={
                 "bg-primary-200 text-white border border-primary-200 p-2 text-start! font-bold text-xl"
               }
             />
+            <Link to={"/login"}>
             <Button
               children={"Logout"}
               className={
                 "bg-primary-200 text-white border border-primary-200 p-2 text-start! font-bold text-xl"
               }
-            />
+            /></Link>
           </div>
         </div>
         <div className="flex flex-col gap-6 px-27">
