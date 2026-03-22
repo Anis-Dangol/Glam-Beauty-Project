@@ -13,12 +13,13 @@ const AuthProvider = ({ children }) => {
   const login = async (data) => {
     const users = getData("users");
 
-    const user = users.find(
+    const userData = users.find(
       (u) =>
         u.email === data.email.toLowerCase().trim() &&
         u.password === data.password
     );
-    return user
+    setUser(userData)
+    return userData
   };
 
   const logout = () => {
