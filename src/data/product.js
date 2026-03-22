@@ -1,0 +1,238 @@
+import productImage1 from "../assets/home/bestseller/img1.jpg";
+import productImage2 from "../assets/home/bestseller/img2.jpg";
+import productImage3 from "../assets/home/bestseller/img3.jpg";
+import productImage4 from "../assets/home/shopByCategory/img1.png";
+import productImage5 from "../assets/home/shopByCategory/img2.png";
+import productImage6 from "../assets/home/shopByCategory/img3.png";
+
+const products = [
+  {
+    id: 1,
+    title: "Matte Lip Gloss",
+    description: "Long-lasting matte lip gloss with smooth finish.",
+    category: "lips",
+    price: 8,
+    rating: 4.3,
+    stock: 50,
+    size: "0.35 oz",
+    brand: "Glam Beauty",
+    image: productImage1,
+    images: [productImage1, productImage2, productImage3],
+    isBestSeller: true
+  },
+  {
+    id: 2,
+    title: "Liquid Lipstick",
+    description: "Highly pigmented liquid lipstick.",
+    category: "lips",
+    price: 10,
+    rating: 4.5,
+    stock: 30,
+    size: "0.30 oz",
+    brand: "Glam Beauty",
+    image: productImage2,
+    images: [productImage2, productImage3, productImage1],
+    isBestSeller: true
+  },
+  {
+    id: 3,
+    title: "Lip Balm",
+    description: "Hydrating lip balm for dry lips.",
+    category: "lips",
+    price: 5,
+    rating: 4.1,
+    stock: 80,
+    size: "0.25 oz",
+    brand: "SoftCare",
+    image: productImage3,
+    images: [productImage3, productImage1],
+    isBestSeller: false
+  },
+  {
+    id: 4,
+    title: "Lip Liner Pencil",
+    description: "Defines lips perfectly.",
+    category: "lips",
+    price: 6,
+    rating: 4.0,
+    stock: 60,
+    size: "1 g",
+    brand: "BeautyLine",
+    image: productImage4,
+    images: [productImage4],
+    isBestSeller: false
+  },
+
+  {
+    id: 5,
+    title: "Liquid Foundation",
+    description: "Smooth coverage foundation.",
+    category: "face",
+    price: 15,
+    rating: 4.4,
+    stock: 40,
+    size: "30 ml",
+    brand: "GlowPro",
+    image: productImage5,
+    images: [productImage5, productImage6],
+    isBestSeller: true
+  },
+  {
+    id: 6,
+    title: "Compact Powder",
+    description: "Oil control compact powder.",
+    category: "face",
+    price: 12,
+    rating: 4.2,
+    stock: 70,
+    size: "20 g",
+    brand: "GlowPro",
+    image: productImage6,
+    images: [productImage6],
+    isBestSeller: false
+  },
+  {
+    id: 7,
+    title: "Blush Palette",
+    description: "Natural glowing blush.",
+    category: "face",
+    price: 14,
+    rating: 4.6,
+    stock: 35,
+    size: "15 g",
+    brand: "BlushCo",
+    image: productImage1,
+    images: [productImage1, productImage2],
+    isBestSeller: true
+  },
+  {
+    id: 8,
+    title: "Highlighter",
+    description: "Shimmer highlighter for glow.",
+    category: "face",
+    price: 13,
+    rating: 4.3,
+    stock: 45,
+    size: "10 g",
+    brand: "GlowPro",
+    image: productImage2,
+    images: [productImage2],
+    isBestSeller: false
+  },
+
+  {
+    id: 9,
+    title: "Moisturizing Cream",
+    description: "Deep hydration for skin.",
+    category: "skin care",
+    price: 18,
+    rating: 4.7,
+    stock: 25,
+    size: "50 ml",
+    brand: "SkinGlow",
+    image: productImage3,
+    images: [productImage3],
+    isBestSeller: true
+  },
+  {
+    id: 10,
+    title: "Face Wash",
+    description: "Gentle daily cleanser.",
+    category: "skin care",
+    price: 9,
+    rating: 4.3,
+    stock: 60,
+    size: "100 ml",
+    brand: "SkinGlow",
+    image: productImage4,
+    images: [productImage4],
+    isBestSeller: false
+  },
+  {
+    id: 11,
+    title: "Sunscreen SPF 50",
+    description: "Protects from UV rays.",
+    category: "skin care",
+    price: 16,
+    rating: 4.5,
+    stock: 50,
+    size: "60 ml",
+    brand: "SunCare",
+    image: productImage5,
+    images: [productImage5],
+    isBestSeller: true
+  },
+  {
+    id: 12,
+    title: "Vitamin C Serum",
+    description: "Brightens skin tone.",
+    category: "skin care",
+    price: 20,
+    rating: 4.6,
+    stock: 30,
+    size: "30 ml",
+    brand: "SkinGlow",
+    image: productImage6,
+    images: [productImage6],
+    isBestSeller: true
+  },
+
+  {
+    id: 13,
+    title: "Floral Perfume",
+    description: "Fresh floral fragrance.",
+    category: "fragrance",
+    price: 25,
+    rating: 4.4,
+    stock: 20,
+    size: "50 ml",
+    brand: "Aroma",
+    image: productImage1,
+    images: [productImage1],
+    isBestSeller: true
+  },
+  {
+    id: 14,
+    title: "Woody Perfume",
+    description: "Warm woody scent.",
+    category: "fragrance",
+    price: 28,
+    rating: 4.2,
+    stock: 15,
+    size: "60 ml",
+    brand: "Aroma",
+    image: productImage2,
+    images: [productImage2],
+    isBestSeller: false
+  },
+  {
+    id: 15,
+    title: "Body Mist",
+    description: "Light refreshing mist.",
+    category: "fragrance",
+    price: 12,
+    rating: 4.1,
+    stock: 40,
+    size: "100 ml",
+    brand: "FreshCo",
+    image: productImage3,
+    images: [productImage3],
+    isBestSeller: false
+  },
+  {
+    id: 16,
+    title: "Luxury Perfume",
+    description: "Premium long-lasting fragrance.",
+    category: "fragrance",
+    price: 35,
+    rating: 4.8,
+    stock: 10,
+    size: "75 ml",
+    brand: "Aroma",
+    image: productImage4,
+    images: [productImage4],
+    isBestSeller: true
+  }
+];
+
+export default products;

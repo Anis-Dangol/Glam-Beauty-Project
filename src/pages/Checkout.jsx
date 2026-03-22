@@ -56,52 +56,43 @@ const Checkout = () => {
             </div>
           </div>
 
-          <h2 className="text-lg font-semibold">PAYMENT</h2>
+          <h2 className="text-lg font-bold">PAYMENT</h2>
 
           <div className="flex flex-col gap-3">
             <div className="flex justify-between">
               <label className="flex items-center gap-2">
-                <input type="radio" name="payment" />
+                <input
+                  type="radio"
+                  name="payment"
+                  className="accent-[#5B4636] scale-100 checked:scale-140 transition-all duration-200"
+                />
                 Bank
               </label>
-              <div className="flex gap-[10px]">
-                <img
-                  src={CheckoutNic}
-                  alt="Nic"
-                  className="w-[50px] h-[50px]"
-                />
-                <img
-                  src={CheckoutNabil}
-                  alt="Nabil"
-                  className="w-[50px] h-[50px]"
-                />
-                <img
-                  src={CheckoutKhalti}
-                  alt="khalti"
-                  className="w-[50px] h-[50px]"
-                />
-                <img
-                  src={CheckOutEsewa}
-                  alt="esewa"
-                  className="w-[50px] h-[50px]"
-                />
+              <div className="flex gap-2.5">
+                <img src={CheckoutNic} alt="Nic" className="w-12.5" />
+                <img src={CheckoutNabil} alt="Nabil" className="w-12.5" />
+                <img src={CheckoutKhalti} alt="khalti" className="w-12.5" />
+                <img src={CheckOutEsewa} alt="esewa" className="w-12.5" />
               </div>
             </div>
 
             <label className="flex items-center gap-2">
-              <input type="radio" name="payment" />
+              <input
+                type="radio"
+                name="payment"
+                className=" accent-[#5B4636] scale-100 checked:scale-140 transition-all duration-100"
+              />
               Cash on delivery
             </label>
           </div>
 
-          <Button
-            label="Pay Now"
-            className=" w-full p-4 text-primary-300 border-primary-300!"
-          />
+          <Button className=" w-full p-4 text-primary-300! border border-primary-300!">
+            Pay Now
+          </Button>
         </form>
 
         <div className="w-1/2 rounded-lg p-4  bg-[#F9FAFB] h-2/3 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]">
-          <div className="h-auto bg-trasparent grid gap-[24px]">
+          <div className="h-auto bg-trasparent grid gap-6">
             <div className="flex flex-col gap-5">
               <div className="flex gap-2">
                 <div className="relative">
@@ -125,12 +116,14 @@ const Checkout = () => {
 
               <div className="flex gap-2">
                 <div className="relative">
-                <img
-                  src={CheckOutMatLip2}
-                  alt="LipBam"
-                  className="w-[84px] h-[84px]"
-                />
-                <span className="absolute -top-2 -right-2 bg-[#374151] text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">2</span>
+                  <img
+                    src={CheckOutMatLip2}
+                    alt="LipBam"
+                    className="w-[84px] h-[84px]"
+                  />
+                  <span className="absolute -top-2 -right-2 bg-[#374151] text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">
+                    2
+                  </span>
                 </div>
                 <div className="grid w-full">
                   <h1 className="font-bold p-3">Matte Lip Gloss</h1>

@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 const Card = ({
+  cardId,
   cardImage,
   ImageClassName,
   imageCenterLabelColor = "white",
@@ -14,12 +16,14 @@ const Card = ({
   return (
     <div className="flex flex-row justify-center">
       <div>
-        <div className="relative">
-          <img
-            src={cardImage}
-            alt="Matte Lip Gloss"
-            className={ImageClassName}
-          />
+        <div id={cardId} className="relative w-93 h-93">
+          <Link to={`productdetails/${cardId}`}>
+            <img
+              src={cardImage}
+              alt="Matte Lip Gloss"
+              className={`w-full h-full object-cover ${ImageClassName}`}
+            />
+          </Link>
           {imageCenterLabel && (
             <p
               className={`absolute top-1/2 translate-x-[-50%] translate-y-[-50%] left-1/2 items-center text-${imageCenterLabelColor} py-4 font-bold text-${imageCenterLabelSize}`}
@@ -34,11 +38,14 @@ const Card = ({
             <p className="px-4 py-2 font-bold text-base text-gray-400">
               Category: {cardCategory}
             </p>
-            <p className="p-4 font-normal text-sm text-gray-800">{cardPrice}</p>
+            <p className="p-4 font-normal text-sm text-gray-800">{`$${cardPrice}`}</p>
           </div>
         )}
         {cardButton && (
-          <Button className={"border border-primary-300 py-4!"}>
+          <Button
+            buttonId={cardId}
+            className={"border border-primary-300 text-primary-300 py-4!"}
+          >
             {cardButton}
           </Button>
         )}
