@@ -1,35 +1,22 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import React, { useState } from "react";
-import Image1 from "../../assets/home/shopByCategory/img1.png";
-import Image2 from "../../assets/home/shopByCategory/img2.png";
-import Image3 from "../../assets/home/shopByCategory/img3.png";
-import Image4 from "../../assets/home/shopByCategory/img4.png";
-
-const bestSellerArray = [
-  { cardImage: Image1, imageCenterLabel: "LIPS" },
-  { cardImage: Image2, imageCenterLabel: "FRAGNANCE" },
-  { cardImage: Image3, imageCenterLabel: "FACE" },
-  { cardImage: Image4, imageCenterLabel: "MAKEUP" },
-
-];
+import categories from "../../data/categories";
 
 const ShopByCategory = () => {
-
   const [startIndex, setStartIndex] = useState(0);
-
   const visibleCount = 3;
 
   const handleNext = () => {
-    setStartIndex((startIndex + 1) % bestSellerArray.length)
+    setStartIndex((prev) => (prev + 1) % categories.length);
   };
-  
+
   const handlePrevious = () => {
-  setStartIndex((startIndex - 1 + bestSellerArray.length) % bestSellerArray.length);
+    setStartIndex((prev) => (prev - 1 + categories.length) % categories.length);
   };
 
   const visibleCards = Array.from(
     { length: visibleCount },
-    (_, i) => bestSellerArray[(startIndex + i) % bestSellerArray.length]
+    (_, i) => categories[(startIndex + i) % categories.length]
   );
 
   return (
@@ -38,34 +25,31 @@ const ShopByCategory = () => {
         <p className="font-semibold text-xl text-gray-800 tracking-[10%]">
           SHOP BY CATEGORY
         </p>
+
         <div className="flex gap-2">
-          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-[50%] cursor-pointer ">
-            <IoIosArrowBack
-            onClick={handlePrevious}
-            size={40} />
+          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-full cursor-pointer">
+            <IoIosArrowBack onClick={handlePrevious} size={40} />
           </span>
-          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]">
-            <IoIosArrowForward
-            onClick={handleNext}
-            size={40} />
+
+          <span className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white border border-[#D6B89E] rounded-full cursor-pointer">
+            <IoIosArrowForward onClick={handleNext} size={40} />
           </span>
         </div>
       </div>
-      <div className="flex flex-row gap-6">
-        {visibleCards.map((c, index) => {
-          return (
-            <div className="w-full h-98 relative ">
-              <img
-                src={c.cardImage}
-                alt=""
-                className="w-full h-full object-cover brightness-75"
-              />
-              <p className="absolute py-4 top-1/2 translate-x-[-50%] translate-y-[-50%] left-1/2 font-bold text-xl text-white">
-                {c.imageCenterLabel}
-              </p>
-            </div>
-          );
-        })}
+
+      <div className="flex gap-6">
+        {visibleCards.map((c) => (
+          <div key={c.id} className="w-full h-98 relative">
+            <img
+              src={c.image}
+              alt={c.label}
+              className="w-full h-full object-cover brightness-75"
+            />
+            <p className="absolute py-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-xl text-white">
+              {c.label}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

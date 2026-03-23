@@ -1,7 +1,7 @@
-import categoryImage1 from "../assets/home/shopByCategory/img1.jpg"
-import categoryImage2 from "../assets/home/shopByCategory/img2.jpg"
-import categoryImage3 from "../assets/home/shopByCategory/img3.jpg"
-import categoryImage4 from "../assets/home/shopByCategory/img4.jpg"
+import categoryImage1 from "../assets/home/shopByCategory/img1.png"
+import categoryImage2 from "../assets/home/shopByCategory/img2.png"
+import categoryImage3 from "../assets/home/shopByCategory/img3.png"
+import categoryImage4 from "../assets/home/shopByCategory/img4.png"
 
 
 const categories = [
