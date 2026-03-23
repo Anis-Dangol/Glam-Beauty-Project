@@ -1,6 +1,8 @@
 import categoryImage1 from "../assets/home/shopByCategory/img1.jpg"
 import categoryImage2 from "../assets/home/shopByCategory/img2.jpg"
 import categoryImage3 from "../assets/home/shopByCategory/img3.jpg"
+import categoryImage4 from "../assets/home/shopByCategory/img4.jpg"
+
 
 const categories = [
   {
@@ -25,7 +27,7 @@ const categories = [
     id: 4,
     name: "fragrance",
     label: "Fragrance",
-    image: categoryImage3
+    image: categoryImage4
   },
 ];
 
