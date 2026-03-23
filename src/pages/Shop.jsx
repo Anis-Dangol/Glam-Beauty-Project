@@ -1,6 +1,7 @@
 import products from "../data/product";
 import categories from "../data/categories";
 import Card from "../components/elements/Card";
+import { FaLongArrowAltRight  } from "react-icons/fa";
 
 const Shop = () => {
   return (
@@ -20,19 +21,19 @@ const Shop = () => {
                 {cat.label}
               </h2>
 
-              <button className="text-sm text-primary-300 hover:underline">
-                See More →
+                <button className="flex items-center gap-2 text-sm text-primary-300 hover:underline">
+                See More <FaLongArrowAltRight />
               </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filteredProducts.map((item) => (
+              {filteredProducts.slice(0,4).map((item) => (
                 <Card
                   key={item.id}
                   cardImage={item.image}
                   cardTitle={item.title}
                   cardCategory={item.category}
-                  cardPrice={`$${item.price}`}
+                  cardPrice={`${item.price}`}
                   cardButton="Add to Cart"
                   imageCenterLabel={
                     item.isBestSeller ? "BEST SELLER" : ""
