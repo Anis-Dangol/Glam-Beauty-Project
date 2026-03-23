@@ -4,7 +4,47 @@ import Input from "../components/elements/Input";
 import Textarea from "../components/elements/Textarea";
 
 const ContactUsPage = () => {
-  const [text, setText] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!form.name || !form.email || !form.message) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    const existingData =
+      JSON.parse(localStorage.getItem("contactData")) || [];
+
+    const updatedData = [...existingData, form];
+
+    localStorage.setItem("contactData", JSON.stringify(updatedData));
+
+    console.log("Saved Data:", updatedData);
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+    alert("Message saved successfully!");
+  };
   return (
     <div className="px-4 md:px-28 w-full">
       <div className="max-w-151 space-y-10">
@@ -18,39 +58,45 @@ const ContactUsPage = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Input
               placeholder="Name"
               type="text"
               id="name"
               name="name"
+              value={form.name}
+              onChange={handleChange}
               className="px-2 py-2"
             />
             <Input
               placeholder="Email"
-              type="text"
-              id="name"
-              name="name"
+              type="email"
+              id="email"
+              name="email"
               className="px-2 py-2"
+              value={form.email}
+              onChange={handleChange}
             />
           </div>
 
           <Input
             placeholder="Phone Number"
             type="text"
-            id="name"
-            name="name"
+            id="phone"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
             className="px-2 py-2"
           />
 
-          <Textarea placeholder="Message" rows={10} disabled={false} value={text}
-  onChange={(e) => setText(e.target.value)} />
+          <Textarea placeholder="Message" rows={10} disabled={false} name="message" value={form.message}
+  onChange={handleChange} />
 
-          <Button className="text-[#5B4636] text-[16px] border border-[#5B4636] -mt-1 py-4 obej">
+          <Button type="submit" className="text-[#5B4636] text-[16px] border border-[#5B4636] -mt-1 py-4">
             Send Message
           </Button>
-        </div>
+         </form>
       </div>
     </div>
   );
