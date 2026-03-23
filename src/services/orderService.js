@@ -1,4 +1,4 @@
-import { getData, setData } from "./baseStorage";
+import { getData, setData } from "./storage";
 
 export const createOrder = (userId, cart, products) => {
   const orders = getData("orders");

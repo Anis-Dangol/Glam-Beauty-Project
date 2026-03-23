@@ -1,39 +1,54 @@
-import { getData, setData } from "./baseStorage";
+import { getData, setData } from "./storage";
 
-export const getCart = () => getData("cart");
 
-export const addToCart = (productId) => {
-  let cart = getCart();
+export const getCartByUser = (userId) => {
+  const cart = getData("cart");
+  return cart.find(c => c.userId === userId) || { userId, items: [] };
+};
 
-  const existing = cart.find((item) => item.productId === productId);
+export const addToCart = (userId, productId, qty = 1) => {
+  let cart = getData("cart");
+
+  let userCart = cart.find(c => c.userId === userId);
+
+  if (!userCart) {
+    userCart = { userId, items: [] };
+    cart.push(userCart);
+  }
+  
+
+  const existing = userCart.items.find(i => i.productId === productId);
 
   if (existing) {
-    existing.quantity += 1;
+    existing.quantity += qty;
   } else {
-    cart.push({ productId, quantity: 1 });
+    userCart.items.push({ productId, quantity: qty });
   }
 
   setData("cart", cart);
 };
 
-export const updateQuantity = (productId, quantity) => {
-  let cart = getCart();
+export const removeFromCart = (userId, productId) => {
+  let cart = getData("cart");
 
-  cart = cart.map((item) =>
-    item.productId === productId
-      ? { ...item, quantity }
-      : item
+  cart = cart.map(c =>
+    c.userId === userId
+      ? {
+          ...c,
+          items: c.items.filter(i => i.productId !== productId)
+        }
+      : c
   );
 
   setData("cart", cart);
 };
 
-export const removeFromCart = (productId) => {
-  let cart = getCart().filter(
-    (item) => item.productId !== productId
+export const clearCart = (userId) => {
+  let cart = getData("cart");
+
+  cart = cart.map(c =>
+    c.userId === userId ? { ...c, items: [] } : c
   );
 
   setData("cart", cart);
 };
-
-export const clearCart = () => setData("cart", []);
