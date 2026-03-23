@@ -20,8 +20,8 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [favourite, setFavourite] = useState(false);
   const [showImage, setShowImage] = useState(1);
-
   const [showAdded, setShowAdded] = useState(false);
+  const [checkCartProduct, setCheckCartProduct] = useState(false);
 
   const currentProduct = products.find(
     (p) => Number(p.id) == Number(productId.id),
@@ -31,9 +31,12 @@ const ProductDetails = () => {
 
   const quantityIncrement = () => setQuantity((prev) => prev + 1);
   const quantityDecrement = () => setQuantity((prev) => prev - 1);
-
   const handleFavourite = () => setFavourite((prev) => !prev);
 
+  if (user) {
+    checkCart(user.id, currentProduct.id);
+  }
+  // const checkCartProduct = checkCart(user.id, currentProduct.id) ? true : false;
   const handleAddToCart = (userId, productId, quantity) => {
     if (!checkCart(user.id, currentProduct.id)) {
       addToCart(userId, productId, quantity);
@@ -128,10 +131,12 @@ const ProductDetails = () => {
               onClick={() =>
                 handleAddToCart(user.id, currentProduct.id, quantity)
               }
-              className={`col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white ${checkCart(user.id, currentProduct.id) ? "cursor-not-allowed!" : "cursor-pointer!"}`}
+              className={`col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white ${checkCartProduct || !user ? "cursor-not-allowed!" : "cursor-pointer!"}`}
             >
-              {showAdded || checkCart(user.id, currentProduct.id)
-                ? "Already Added"
+              {user
+                ? checkCartProduct
+                  ? "Already Added"
+                  : "Add to cart"
                 : "Add to cart"}
             </Button>
 
