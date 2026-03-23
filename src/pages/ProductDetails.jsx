@@ -1,8 +1,3 @@
-import product1 from "../assets/Products/product1.png";
-import product2 from "../assets/Products/product2.png";
-import product3 from "../assets/Products/product3.png";
-import product4 from "../assets/Products/product4.png";
-import product5 from "../assets/Products/product5.png";
 import { FaHeart, FaStar } from "react-icons/fa";
 import Button from "./../components/elements/Button";
 import { CiHeart } from "react-icons/ci";
@@ -14,28 +9,39 @@ import { GoPlus } from "react-icons/go";
 
 import { useParams } from "react-router-dom";
 import products from "../data/product.js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+import { addToCart, checkCart } from "../services/cartService.js";
 
 const ProductDetails = () => {
+  const { user } = useContext(AuthContext);
+
   const productId = useParams();
   const [quantity, setQuantity] = useState(1);
   const [favourite, setFavourite] = useState(false);
   const [showImage, setShowImage] = useState(1);
 
+  const [showAdded, setShowAdded] = useState(false);
+
   const currentProduct = products.find(
     (p) => Number(p.id) == Number(productId.id),
   );
-  console.log(showImage)
 
-  useEffect(() => {
-    console.log("showImage")
-    console.log(showImage)
-  },[showImage])
+  // useEffect(() => {}, [showImage]);
 
   const quantityIncrement = () => setQuantity((prev) => prev + 1);
   const quantityDecrement = () => setQuantity((prev) => prev - 1);
 
   const handleFavourite = () => setFavourite((prev) => !prev);
+
+  const handleAddToCart = (userId, productId, quantity) => {
+    if (!checkCart(user.id, currentProduct.id)) {
+      addToCart(userId, productId, quantity);
+    }
+    checkCart(user.id, currentProduct.id)
+      ? setShowAdded(true)
+      : setShowAdded(false);
+  };
 
   return (
     <section className="w-full flex flex-row gap-6 px-26">
@@ -119,9 +125,14 @@ const ProductDetails = () => {
 
             <Button
               buttonId={currentProduct.id}
-              className="col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white"
+              onClick={() =>
+                handleAddToCart(user.id, currentProduct.id, quantity)
+              }
+              className={`col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white ${checkCart(user.id, currentProduct.id) ? "cursor-not-allowed!" : "cursor-pointer!"}`}
             >
-              {false ? "Already Added" : "Add to cart"}
+              {showAdded || checkCart(user.id, currentProduct.id)
+                ? "Already Added"
+                : "Add to cart"}
             </Button>
 
             <div
