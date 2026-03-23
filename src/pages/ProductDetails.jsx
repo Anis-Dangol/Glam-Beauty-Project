@@ -6,12 +6,13 @@ import { PiPawPrint } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
 import { LuMinus } from "react-icons/lu";
 import { GoPlus } from "react-icons/go";
-
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import products from "../data/product.js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { addToCart, checkCart } from "../services/cartService.js";
+import { getWishlist, toggleWishlist } from "../services/wishlistService";
 
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
@@ -26,16 +27,43 @@ const ProductDetails = () => {
     (p) => Number(p.id) == Number(productId.id),
   );
 
-  // useEffect(() => {}, [showImage]);
+  useEffect(() => {
+    if (!user) return;
+
+    const wishlist = getWishlist();
+
+    const userWishlist = wishlist.find(
+      (userItem) => userItem.userId === user.id
+    );
+
+    const exists = userWishlist?.items.find(
+      (item) => item.productId === currentProduct.id
+    );
+
+    setFavourite(!!exists);
+  },[currentProduct.id, user]);
+
 
   const quantityIncrement = () => setQuantity((prev) => prev + 1);
   const quantityDecrement = () => setQuantity((prev) => prev - 1);
-  const handleFavourite = () => setFavourite((prev) => !prev);
+  const navigate = useNavigate();
+  const handleFavourite = () => {
+      if (!user) {
+        const confirmLogin = window.confirm("You need to login first. Go to login page?");
+
+        if (confirmLogin) {
+          navigate("/login");
+        }
+        return
+      }
+    toggleWishlist(user.id, currentProduct.id);
+    setFavourite((prev) => !prev);
 
   if (user) {
     checkCart(user.id, currentProduct.id);
   }
-  
+    };
+
   const handleAddToCart = (userId, productId, quantity) => {
     if (!checkCart(user.id, currentProduct.id)) {
       addToCart(userId, productId, quantity);
@@ -153,9 +181,9 @@ const ProductDetails = () => {
               className="col-span-2 border border-[#5B4636] rounded-sm flex items-center justify-center p-4 w-16 h-12.5 cursor-pointer"
             >
               {favourite ? (
-                <CiHeart className="w-6 h-6 text-[#5B4636]" />
-              ) : (
                 <FaHeart className="w-5 h-5 text-[#ff5858]" />
+              ) : (
+                <CiHeart className="w-6 h-6 text-[#5B4636]" />
               )}
             </div>
           </div>

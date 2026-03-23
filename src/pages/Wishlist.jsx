@@ -84,8 +84,9 @@ const Wishlist = () => {
           {wishlistItems.map((item) => (
             <Card
               key={item.id}
+              silderClassName={"w-full h-93"}
               cardImage={item.image}
-              ImageClassName="w-full h-64 object-cover rounded-lg shadow-md"
+              ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
               cardTitle={item.title}
               cardCategory={item.category}
               cardPrice={item.price}
@@ -112,8 +113,9 @@ const Wishlist = () => {
           {recommendedItems.map((item) => (
             <Card
               key={item.id}
+              silderClassName={"w-full h-93"}
               cardImage={item.image}
-              ImageClassName="w-full h-64 object-cover rounded-lg shadow-md"
+              ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
               cardTitle={item.title}
               cardCategory={item.category}
               cardPrice={item.price}
