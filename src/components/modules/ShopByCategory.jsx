@@ -1,5 +1,6 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import React, { useState } from "react";
+import  { useState } from "react";
+import { Link } from "react-router-dom";
 import categories from "../../data/categories";
 
 const ShopByCategory = () => {
@@ -39,7 +40,10 @@ const ShopByCategory = () => {
 
       <div className="flex gap-6">
         {visibleCards.map((c) => (
-          <div key={c.id} className="w-full h-98 relative">
+          <Link 
+          to={`/shop/${c.name}`}
+          key={c.id} 
+          className="w-full h-98 relative">
             <img
               src={c.image}
               alt={c.label}
@@ -48,7 +52,7 @@ const ShopByCategory = () => {
             <p className="absolute py-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-xl text-white">
               {c.label}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
