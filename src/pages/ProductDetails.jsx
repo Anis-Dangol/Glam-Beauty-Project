@@ -21,7 +21,6 @@ const ProductDetails = () => {
   const [favourite, setFavourite] = useState(false);
   const [showImage, setShowImage] = useState(1);
   const [showAdded, setShowAdded] = useState(false);
-  const [checkCartProduct, setCheckCartProduct] = useState(false);
 
   const currentProduct = products.find(
     (p) => Number(p.id) == Number(productId.id),
@@ -36,7 +35,7 @@ const ProductDetails = () => {
   if (user) {
     checkCart(user.id, currentProduct.id);
   }
-  // const checkCartProduct = checkCart(user.id, currentProduct.id) ? true : false;
+  
   const handleAddToCart = (userId, productId, quantity) => {
     if (!checkCart(user.id, currentProduct.id)) {
       addToCart(userId, productId, quantity);
@@ -45,6 +44,14 @@ const ProductDetails = () => {
       ? setShowAdded(true)
       : setShowAdded(false);
   };
+
+  useEffect(() => {
+    if (user) {
+      checkCart(user.id, currentProduct.id)
+        ? setShowAdded(true)
+        : setShowAdded(false);
+    }
+  }, []);
 
   return (
     <section className="w-full flex flex-row gap-6 px-26">
@@ -131,10 +138,10 @@ const ProductDetails = () => {
               onClick={() =>
                 handleAddToCart(user.id, currentProduct.id, quantity)
               }
-              className={`col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white ${checkCartProduct || !user ? "cursor-not-allowed!" : "cursor-pointer!"}`}
+              className={`col-span-6 bg-[#5B4636] border rounded-md w-102 h-12.5 flex items-center justify-center text-white ${showAdded || !user ? "cursor-not-allowed!" : "cursor-pointer!"}`}
             >
               {user
-                ? checkCartProduct
+                ? showAdded
                   ? "Already Added"
                   : "Add to cart"
                 : "Add to cart"}
