@@ -6,6 +6,7 @@ import { SlLock } from "react-icons/sl";
 import Button from "../components/elements/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -54,8 +55,7 @@ const Login = () => {
       setErrors(validationErrors);
       return;
     }
-    const user=login(form)
-
+    const user = login(form);
     if (!user) {
       setErrors({
         email: "Invalid email or password",
@@ -63,7 +63,11 @@ const Login = () => {
       });
       return;
     }
-
+    toast.message("Login successful!", {
+      description: `Welcome back, ${user.firstName}!`,
+      duration: 4000,
+      type: "success",
+    });
     localStorage.setItem("currentUser", JSON.stringify(user));
     navigate("/");
   };
@@ -98,7 +102,10 @@ const Login = () => {
         Forgot password?
       </div>
 
-      <Button type="submit" className="bg-[#895E39] rounded-sm py-2 text-white text-sm">
+      <Button
+        type="submit"
+        className="bg-[#895E39] rounded-sm py-2 text-white text-sm"
+      >
         Login
       </Button>
 
