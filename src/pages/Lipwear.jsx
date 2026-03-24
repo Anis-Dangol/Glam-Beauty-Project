@@ -48,7 +48,7 @@ const Lipwear = () => {
         <button
           onClick={() => setCurrentPage((prev) => prev - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           Prev
         </button>
@@ -57,7 +57,7 @@ const Lipwear = () => {
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}
-            className={`px-3 py-1 border rounded ${
+            className={`px-3 py-1 border rounded cursor-pointer ${
               currentPage === index + 1
                 ? "bg-black text-white"
                 : "bg-white"
@@ -70,7 +70,7 @@ const Lipwear = () => {
         <button
           onClick={() => setCurrentPage((prev) => prev + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 border rounded disabled:opacity-50 cursor-pointer"
         >
           Next
         </button>
