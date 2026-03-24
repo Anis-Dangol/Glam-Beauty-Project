@@ -7,8 +7,26 @@ import CheckoutNic from "../assets/CheckOut/CheckOut-nic.png";
 import CheckoutNabil from "../assets/CheckOut/CheckOut-nabil.png";
 import CheckOutMatLip from "../assets/CheckOut/CheckOut-MatLip.jpg";
 import CheckOutMatLip2 from "../assets/CheckOut/CheckOut-MatLip2.jpg";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { getCartByUser } from "../services/cartService";
+import products from "../data/product";
 
 const Checkout = () => {
+  const { user } = useContext(AuthContext);
+  const [cartData, setCartData] = useState({ items: [] });
+
+  const totalPrice = cartData.items.reduce((total, p) => {
+    const foundProduct = products.find((f) => f.id === p.productId);
+    return foundProduct ? total + foundProduct.price * p.quantity : total;
+  }, 0);
+
+  useEffect(() => {
+    if (user) {
+      setCartData(getCartByUser(user.id));
+    }
+  }, [user]);
+
   return (
     <section className="px-28">
       <div className="flex gap-26">
@@ -94,51 +112,41 @@ const Checkout = () => {
         <div className="w-1/2 rounded-lg p-4  bg-[#F9FAFB] h-2/3 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]">
           <div className="h-auto bg-trasparent grid gap-6">
             <div className="flex flex-col gap-5">
-              <div className="flex gap-2">
-                <div className="relative">
-                  <img
-                    src={CheckOutMatLip}
-                    alt="LipBam"
-                    className="w-[84px] h-[84px]"
-                  />
-                  <span className="absolute -top-2 -right-2 bg-[#374151] text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">
-                    1
-                  </span>
-                </div>
-                <div className="grid w-full">
-                  <h1 className="font-bold p-3">Matte Lip Gloss</h1>
-                  <div className="flex justify-between px-3 py-2">
-                    <span className="text-[#9CA3AF]">Category:Lips</span>
-                    <span>$12.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-2">
-                <div className="relative">
-                  <img
-                    src={CheckOutMatLip2}
-                    alt="LipBam"
-                    className="w-[84px] h-[84px]"
-                  />
-                  <span className="absolute -top-2 -right-2 bg-[#374151] text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">
-                    2
-                  </span>
-                </div>
-                <div className="grid w-full">
-                  <h1 className="font-bold p-3">Matte Lip Gloss</h1>
-                  <div className="flex justify-between px-3 py-2">
-                    <span className="text-[#9CA3AF]">Category:Lips</span>
-                    <span>$24.00</span>
-                  </div>
-                </div>
-              </div>
+              {cartData.items.map((p) => {
+                const foundProduct = products.find((f) => f.id === p.productId);
+                console.log(foundProduct);
+                if (foundProduct) {
+                  return (
+                    <div className="flex gap-2">
+                      <div className="relative">
+                        <img
+                          src={foundProduct.images[0]}
+                          alt="LipBam"
+                          className="w-[84px] h-[84px]"
+                        />
+                        <span className="absolute -top-2 -right-2 bg-[#374151] text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">
+                          {p.quantity}
+                        </span>
+                      </div>
+                      <div className="grid w-full">
+                        <h1 className="font-bold p-3">{foundProduct.title}</h1>
+                        <div className="flex justify-between px-3 py-2">
+                          <span className="text-[#9CA3AF]">
+                            Category:{foundProduct.category}
+                          </span>
+                          <span>${foundProduct.price * p.quantity}</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              })}
             </div>
 
             <div className="  pt-4 flex flex-col gap-5">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>$36.00</span>
+                <span>${totalPrice}</span>
               </div>
 
               <div className="flex justify-between">
@@ -148,7 +156,7 @@ const Checkout = () => {
 
               <div className="flex justify-between font-bold text-[20px] bg-[#F3E8DC] p-4 rounded">
                 <span>Total</span>
-                <span>$41.00</span>
+                <span>${totalPrice + 5}</span>
               </div>
             </div>
           </div>
