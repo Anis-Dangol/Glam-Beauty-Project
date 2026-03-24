@@ -16,7 +16,7 @@ const Card = ({
 }) => {
   return (
     <div className="flex flex-row justify-center">
-      <div>
+      <div className="object-cover w-full">
         <div id={cardId} className={`relative ${silderClassName}`}>
           <Link to={`/productdetails/${cardId}`}>
             <img

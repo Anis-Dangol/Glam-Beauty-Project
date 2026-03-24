@@ -228,7 +228,6 @@ const Checkout = () => {
 
         <div className="w-1/2 rounded-lg p-4 bg-[#F9FAFB] shadow">
           <div className="grid gap-6">
-         
             {(cartData?.items || []).map((item) => {
               const product = products.find(
                 (p) => p.id === item.productId
@@ -250,14 +249,14 @@ const Checkout = () => {
 
                   <div className="grid w-full">
                     <h1 className="font-bold p-3">
-                      {product.name}
+                      {product.title}
                     </h1>
 
                     <div className="flex justify-between px-3 py-2">
                       <span className="text-gray-400">
-                        {product.category}
+                        Category: {product.category}
                       </span>
-                      <span>${product.price}</span>
+                      <span>${product.price * item.quantity}</span>
                     </div>
                   </div>
                 </div>
