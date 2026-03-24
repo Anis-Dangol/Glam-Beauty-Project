@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Shop = () => {
   const navigate = useNavigate();
   return (
-    <section className="px-6 md:px-12 lg:px-20 py-10 space-y-12">
+    <section className="px-6 md:px-12 lg:px-27 py-10 space-y-12">
       
       {categories.map((cat) => {
         const filteredProducts = products.filter(
@@ -47,7 +47,7 @@ const Shop = () => {
               ))}
             </div>
           </div>
-        );
+        );  
       })}
     </section>
   );

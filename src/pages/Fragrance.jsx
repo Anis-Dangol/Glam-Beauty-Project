@@ -1,29 +1,74 @@
+import { useState } from "react";
 import products from "../data/product";
 import Card from "../components/elements/Card";
 
 function Fragrance() {
-    const fragranceProduct = products.filter(
-        (item) => item.category === "fragrance"
-    );
+  const fragranceProduct = products.filter(
+    (item) => item.category === "fragrance"
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = fragranceProduct.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const totalPages = Math.ceil(
+    fragranceProduct.length / itemsPerPage
+  );
+
   return (
     <section className="px-28">
-        <h1 className="text-2xl font-bold mb-6">Fragrance</h1>
-
-        <div className="grid grid-cols-4 gap-5">
-            {fragranceProduct.map((item)=> (
-                <Card
-                key={item.id}
-                cardId={item.id}
-                cardImage={item.image}
-                cardTitle={item.title}
-                cardCategory={item.category}
-                cardPrice={item.price}
-                cardButton={"Add to Cart"}
-                />
-            ))}
-        </div>
+      <h1 className="text-2xl font-bold mb-6">Fragrance</h1>
+      <div className="grid grid-cols-4 gap-5">
+        {currentItems.map((item) => (
+          <Card
+            key={item.id}
+            cardId={item.id}
+            cardImage={item.image}
+            cardTitle={item.title}
+            cardCategory={item.category}
+            cardPrice={item.price}
+            cardButton={"Add to Cart"}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center mt-6 gap-2">
+        <button
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Prev
+        </button>
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`px-3 py-1 border rounded ${
+              currentPage === index + 1
+                ? "bg-black text-white"
+                : "bg-white"
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </section>
   );
-};
+}
 
-export default Fragrance
+export default Fragrance;
