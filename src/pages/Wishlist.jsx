@@ -3,10 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { getWishlist } from "../services/wishlistService";
 import products from "../data/product";
 import { useNavigate } from "react-router-dom";
-import Hydratingprimer from "../assets/Wishlist/wishlist-Hydrating Primer.png";
-import Matteliquidlipstick from "../assets/Wishlist/wishlist-Matte Liquid Lipstick.png";
-import Nourishingfaceoil from "../assets/Wishlist/wishlist-Nourishing Face Oil.png";
-import Soothingfacialmist from "../assets/Wishlist/wishlist-Soothing Facial Mist.png";
+
 
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 import { useContext, useState, useEffect } from "react";
@@ -51,7 +48,7 @@ const Wishlist = () => {
   }, []);
 
   return (
-    <section className="px-6 md:px-12 lg:px-20 py-10 space-y-12">
+    <section className="px-6 md:px-12 lg:px-20 space-y-12">
       <div>
         <h1 className="font-bold text-[#1F2937] text-xl mb-6">
           WISHLIST ({wishlistItems.length})
