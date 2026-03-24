@@ -39,7 +39,6 @@ const CartPage = () => {
 
   const handleRemove = (productId) => {
     removeFromCart(user.id, productId);
-    toast.success("Product removed!");
     refreshCart();
   };
 

@@ -33,36 +33,37 @@ const ProductDetails = () => {
     const wishlist = getWishlist();
 
     const userWishlist = wishlist.find(
-      (userItem) => userItem.userId === user.id
+      (userItem) => userItem.userId === user.id,
     );
 
     const exists = userWishlist?.items.find(
-      (item) => item.productId === currentProduct.id
+      (item) => item.productId === currentProduct.id,
     );
 
     setFavourite(!!exists);
-  },[currentProduct.id, user]);
-
+  }, [currentProduct.id, user]);
 
   const quantityIncrement = () => setQuantity((prev) => prev + 1);
   const quantityDecrement = () => setQuantity((prev) => prev - 1);
   const navigate = useNavigate();
   const handleFavourite = () => {
-      if (!user) {
-        const confirmLogin = window.confirm("You need to login first. Go to login page?");
+    if (!user) {
+      const confirmLogin = window.confirm(
+        "You need to login first. Go to login page?",
+      );
 
-        if (confirmLogin) {
-          navigate("/login");
-        }
-        return
+      if (confirmLogin) {
+        navigate("/login");
       }
+      return;
+    }
     toggleWishlist(user.id, currentProduct.id);
     setFavourite((prev) => !prev);
 
-  if (user) {
-    checkCart(user.id, currentProduct.id);
-  }
-    };
+    if (user) {
+      checkCart(user.id, currentProduct.id);
+    }
+  };
 
   const handleAddToCart = (userId, productId, quantity) => {
     if (!checkCart(user.id, currentProduct.id)) {
