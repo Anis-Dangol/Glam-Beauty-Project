@@ -18,7 +18,7 @@ const Card = ({
     <div className="flex flex-row justify-center">
       <div>
         <div id={cardId} className={`relative ${silderClassName}`}>
-          <Link to={`productdetails/${cardId}`}>
+          <Link to={`/productdetails/${cardId}`}>
             <img
               src={cardImage}
               alt="Matte Lip Gloss"
