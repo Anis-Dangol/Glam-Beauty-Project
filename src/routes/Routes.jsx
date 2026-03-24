@@ -14,6 +14,10 @@ import Checkout from "../pages/Checkout";
 import Wishlist from "../pages/Wishlist";
 import ProductDetails from "../pages/ProductDetails";
 import ProtectedRoute from "./ProtectedRoute";
+import Shop from "../pages/Shop";
+import SkinCare from "../pages/SkinCare";
+import Lipwear from "../pages/Lipwear";
+import Fragrance from "../pages/Fragrance";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +75,13 @@ const router = createBrowserRouter([
         ),
       },
       { path: "productdetails/:id", element: <ProductDetails /> },
+      { path: "shop", element: <Shop /> },
+      { path: "skincare", element: <SkinCare /> },
+      { path: "lipwear", element: <Lipwear /> },
+      { path: "Fragrance", element: <Fragrance /> },
+      { path: "shop/lips", element: <Lipwear /> },
+      { path: "shop/skincare", element: <SkinCare /> },
+      { path: "shop/fragrance", element: <Fragrance /> },
     ],
   },
 ]);
