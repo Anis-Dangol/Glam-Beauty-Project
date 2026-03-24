@@ -1,7 +1,7 @@
 import { getData, setData } from "./storage";
 
 export const createOrder = (userId, cart, products) => {
-  const orders = getData("orders");
+  const orders = getData("orders") || [];
 
   const total = cart.reduce((sum, item) => {
     const product = products.find(p => p.id === item.productId);

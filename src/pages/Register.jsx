@@ -7,6 +7,7 @@ import Button from "../components/elements/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getData, setData } from "../services/storage";
+import { toast } from "sonner";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -92,7 +93,11 @@ const validate = () => {
     const users = getData("users");
     users.push(newUser);
     setData("users", users);
-
+    toast.message("Register successful!", {
+      description: `Hello, ${newUser.firstName}. You are successfully registered!`,
+      duration: 4000,
+      type: "success",
+    });
     setForm({
       firstName: "",
       lastName: "",
