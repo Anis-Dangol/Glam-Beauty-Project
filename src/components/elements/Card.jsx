@@ -15,15 +15,19 @@ const Card = ({
   cardButton,
 }) => {
   return (
-    <div className="flex flex-row justify-center">
+    <div className="w-full justify-center">
       <div>
         <div id={cardId} className={`relative ${silderClassName}`}>
-          <Link to={`productdetails/${cardId}`}>
+          <Link to={`/productdetails/${cardId}`}>
+          <div className="w-full h-93 bg-gray-100 flex items-center justify-center rounded-lg">
+
+
             <img
               src={cardImage}
               alt="Matte Lip Gloss"
               className={`w-full h-full object-cover ${ImageClassName}`}
             />
+          </div>
           </Link>
           {imageCenterLabel && (
             <p

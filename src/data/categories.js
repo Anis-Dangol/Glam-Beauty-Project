@@ -9,7 +9,8 @@ const categories = [
     id: 1,
     name: "lips",
     label: "Lips",
-    image: categoryImage1
+    image: categoryImage1,
+    route: "lipwear"
   },
   {
     id: 2,
@@ -21,13 +22,15 @@ const categories = [
     id: 3,
     name: "skin care",
     label: "Skin Care",
-    image: categoryImage3
+    image: categoryImage3,
+    route: "skincare"
   },
   {
     id: 4,
     name: "fragrance",
     label: "Fragrance",
-    image: categoryImage4
+    image: categoryImage4,
+    route: "Fragrance"
   },
 ];
 

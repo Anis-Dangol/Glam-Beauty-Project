@@ -1,8 +1,13 @@
 import products from "../data/product";
 import categories from "../data/categories";
 import Card from "../components/elements/Card";
+import { FaLongArrowAltRight  } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Shop = () => {
+  const navigate = useNavigate();
   return (
     <section className="px-6 md:px-12 lg:px-20 py-10 space-y-12">
       
@@ -20,13 +25,13 @@ const Shop = () => {
                 {cat.label}
               </h2>
 
-              <button className="text-sm text-primary-300 hover:underline">
-                See More →
+              <button onClick={() => navigate(`/${cat.route}`)} className="flex items-center gap-2 text-sm text-primary-300 hover:underline">
+                See More <FaLongArrowAltRight />
               </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filteredProducts.map((item) => (
+              {filteredProducts.slice(0,4).map((item) => (
                 <Card
                   key={item.id}
                   cardImage={item.image}
