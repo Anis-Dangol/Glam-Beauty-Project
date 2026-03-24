@@ -12,18 +12,28 @@ import {
 } from "../services/cartService.js";
 import { AuthContext } from "../context/AuthContext.jsx";
 import products from "../data/product.js";
+import { toast } from "sonner";
 
 const CartPage = () => {
   const { user } = useContext(AuthContext);
   const [cartData, setCartData] = useState({ items: [] });
 
   const handleIncrement = (foundProductId, currentQty) => {
-    updateQuantity(user.id, foundProductId, currentQty + 1);
+    const stockProduct = products.find((p) => p.id === foundProductId);
+    updateQuantity(
+      user.id,
+      foundProductId,
+      stockProduct.stock > currentQty ? currentQty + 1 : currentQty,
+    );
     refreshCart();
   };
 
   const handleDecrement = (foundProductId, currentQty) => {
-    updateQuantity(user.id, foundProductId, currentQty - 1);
+    updateQuantity(
+      user.id,
+      foundProductId,
+      currentQty <= 1 ? currentQty : currentQty - 1,
+    );
     refreshCart();
   };
 
@@ -39,6 +49,12 @@ const CartPage = () => {
 
   const refreshCart = () => {
     setCartData(getCartByUser(user.id));
+  };
+
+  const handleChange = (productId, value) => {
+    const newValue = Number(value);
+    updateQuantity(user.id, productId, newValue);
+    refreshCart();
   };
 
   useEffect(() => {
@@ -73,7 +89,7 @@ const CartPage = () => {
             console.log(foundProduct);
             if (foundProduct) {
               return (
-                <tr>
+                <tr key={foundProduct.id}>
                   <th scope="row" className="font-medium whitespace-nowrap">
                     <div className="flex flex-row items-center gap-3">
                       <img
@@ -87,13 +103,19 @@ const CartPage = () => {
                     </div>
                   </th>
                   <td className="text-gray-800 font-bold text-base">
-                    ${foundProduct.price}
+                    $
+                    {foundProduct.price <= 1
+                      ? foundProduct.price
+                      : foundProduct.price}
                   </td>
                   <td>
                     <div className="relative w-20">
                       <Input
                         type="number"
-                        value={p.quantity}
+                        value={p.quantity <= 1 ? 1 : p.quantity}
+                        onChange={(e) =>
+                          handleChange(foundProduct.id, e.target.value)
+                        }
                         className="w-full rounded border border-gray-600 px-4 py-2 text-gray-800 font-bold text-base"
                       />
                       <div className="absolute right-2 top-0 flex flex-col text-xs">

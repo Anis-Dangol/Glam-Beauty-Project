@@ -41,7 +41,7 @@ const ShopByCategory = () => {
       <div className="flex gap-6">
         {visibleCards.map((c) => (
           <Link 
-          to={`/shop/${c.name}`}
+          to={`/shop/${(c.name === "face") ? (""): ((c.name).split(" ").join(""))}`}
           key={c.id} 
           className="w-full h-98 relative">
             <img

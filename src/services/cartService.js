@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { getData, setData } from "./storage";
 
 export const getCartByUser = (userId) => {
@@ -34,6 +35,11 @@ export const addToCart = (userId, productId, qty = 1) => {
   }
 
   setData("cart", cart);
+  toast.message("Product Added!", {
+    description: `Your product was added successfully`,
+    duration: 4000,
+    type: "success",
+  });
 };
 
 export const removeFromCart = (userId, productId) => {
@@ -49,6 +55,11 @@ export const removeFromCart = (userId, productId) => {
   );
 
   setData("cart", cart);
+  toast.message("Product removed!", {
+    description: `Your product was removed successfully`,
+    duration: 4000,
+    type: "success",
+  });
 };
 
 export const clearCart = (userId) => {
