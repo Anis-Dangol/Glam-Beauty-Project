@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { addToCart, checkCart } from "../../services/cartService";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import products from "../../data/product";
+import { toast } from "sonner";
 
 const Card = ({
   cardId,
@@ -14,20 +19,41 @@ const Card = ({
   cardPrice,
   cardButton,
 }) => {
+  const { user } = useContext(AuthContext);
+  const [showAdded, setShowAdded] = useState(false);
+
+  const handleAddToCart = (userId, cardId) => {
+    if (!checkCart(userId, cardId)) {
+      addToCart(userId, cardId);
+      setShowAdded(true);
+    } else {
+      toast.message("Product already added!", {
+        description: `Your product was already added`,
+        duration: 4000,
+        type: "success",
+      });
+    }
+  };
+  const currentProduct = products.find((p) => Number(p.id) == Number(cardId));
+
+  useEffect(() => {
+    checkCart(user.id, currentProduct.id)
+      ? setShowAdded(true)
+      : setShowAdded(false);
+  }, [user]);
+
   return (
     <div className="w-full justify-center">
       <div>
         <div id={cardId} className={`relative ${silderClassName}`}>
           <Link to={`/productdetails/${cardId}`}>
-          <div className="w-full h-93 bg-gray-100 flex items-center justify-center rounded-lg">
-
-
-            <img
-              src={cardImage}
-              alt="Matte Lip Gloss"
-              className={`w-full h-full object-cover ${ImageClassName}`}
-            />
-          </div>
+            <div className="w-full h-93 bg-gray-100 flex items-center justify-center rounded-lg">
+              <img
+                src={cardImage}
+                alt="Matte Lip Gloss"
+                className={`w-full h-full object-cover ${ImageClassName}`}
+              />
+            </div>
           </Link>
           {imageCenterLabel && (
             <p
@@ -49,9 +75,14 @@ const Card = ({
         {cardButton && (
           <Button
             buttonId={cardId}
+            onClick={() => handleAddToCart(user.id, cardId)}
             className={"border border-primary-300 text-primary-300 py-4!"}
           >
-            {cardButton}
+            {user
+              ? showAdded
+                ? "Already Added"
+                : "Add to cart"
+              : "Add to cart"}
           </Button>
         )}
       </div>
