@@ -1,16 +1,32 @@
 import products from '../data/product';
 import Card from '../components/elements/Card';
+import { useState } from 'react';
 
 const SkinCare = () => {
     const skincareProduct = products.filter(
         (item) => item.category === "skin care"
+    );
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 8;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+    const currentItems = skincareProduct.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+    const totalPages = Math.ceil(
+        skincareProduct.length / itemsPerPage
     );
   return (
     <section className="md:px-12 lg:px-27 w-full h-full">
         <h1 className='text-2xl font-bold mb-6'>Skin Care</h1>
 
         <div className='grid grid-cols-4 gap-5'>
-            {skincareProduct.map((item) => (
+            {currentItems.map((item) => (
                 <Card
                 key={item.id}
                 cardId={item.id}
@@ -20,6 +36,35 @@ const SkinCare = () => {
                 cardPrice={item.price}
                 cardButton={"Add to Cart"}/>
             ))}
+        </div>
+
+        <div className='flex justify-center mt-6 gap-2'>
+            <button
+            onClick={()=> setCurrentPage((prev) => prev - 1)}
+            disabled={currentPage === 1}
+            className='px-3 py-1 border rounded disabled:opacity-50'>
+                Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => 
+            <button 
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`px-3 py-1 border rounded ${
+              currentPage === index + 1
+                ? "bg-black text-white"
+                : "bg-white"
+            }`}>
+                {index + 1}
+            </button>
+            )}
+
+            <button
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            disabled={currentPage === totalPages}
+            className='px-3 py-1 border rounded disabled:opacity-50'>
+Next
+            </button>
         </div>
     </section>
   );
