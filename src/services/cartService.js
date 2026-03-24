@@ -58,3 +58,21 @@ export const clearCart = (userId) => {
 
   setData("cart", cart);
 };
+
+export const updateQuantity = (userId, productId, newQuantity) => {
+  let cart = getData("cart");
+
+  cart = cart.map((c) =>
+    c.userId === userId
+      ? {
+          ...c,
+          items: c.items.map((item) =>
+            item.productId === productId
+              ? { ...item, quantity: newQuantity }
+              : item,
+          ),
+        }
+      : c,
+  );
+  setData("cart", cart);
+};
