@@ -1,77 +1,54 @@
 import Card from "../components/elements/Card";
-import Conceler from "../assets/Wishlist/wishlish-Concealer.png";
-import Liquidlipgloss from "../assets/Wishlist/wishlish-Liquid Lip Gloss.png";
-import Mattelipgloss from "../assets/Wishlist/wishlish-Matte Lip Gloss.png";
-import Settingspray from "../assets/Wishlist/wishlish-Setting Spray.png";
-
+import { AuthContext } from "../context/AuthContext";
+import { getWishlist } from "../services/wishlistService";
+import products from "../data/product";
+import { useNavigate } from "react-router-dom";
 import Hydratingprimer from "../assets/Wishlist/wishlist-Hydrating Primer.png";
 import Matteliquidlipstick from "../assets/Wishlist/wishlist-Matte Liquid Lipstick.png";
 import Nourishingfaceoil from "../assets/Wishlist/wishlist-Nourishing Face Oil.png";
 import Soothingfacialmist from "../assets/Wishlist/wishlist-Soothing Facial Mist.png";
 
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
+import { useContext, useState, useEffect } from "react";
 
 const Wishlist = () => {
-  const wishlistItems = [
-    {
-      id: 1,
-      image: Mattelipgloss,
-      title: "Matte Lip Gloss",
-      category: "Lips",
-      price: "$8.00",
-    },
-    {
-      id: 2,
-      image: Liquidlipgloss,
-      title: "Liquid Lip Gloss",
-      category: "Lips",
-      price: "$8.00",
-    },
-    {
-      id: 3,
-      image: Conceler,
-      title: "Concealer",
-      category: "Lips",
-      price: "$8.00",
-    },
-    {
-      id: 4,
-      image: Settingspray,
-      title: "Setting Spray",
-      category: "Lips",
-      price: "$10.00",
-    },
-  ];
-  const recommendedItems = [
-    {
-      id: 5,
-      image: Nourishingfaceoil,
-      title: "Nourishing Face Oil",
-      category: "Face",
-      price: "$18.00",
-    },
-    {
-      id: 6,
-      image: Hydratingprimer,
-      title: "Hydrating Primer",
-      category: "Face",
-      price: "$15.00",
-    },
-    {
-      id: 7,
-      image: Matteliquidlipstick,
-      title: "Matte Liquid Lipstick",
-      category: "Face",
-      price: "$10.00",
-    },
-    {
-      id: 8,
-      image: Soothingfacialmist,
-      title: "Soothing Facial Mist",
-      category: "Face",
-      price: "$12.00",
-    },
-  ];
+  const { user } = useContext(AuthContext);
+  const [wishlistItems, setWishlistItems] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const wishlist = getWishlist();
+
+    const userWishlist = wishlist.find(
+      (item) => item.userId === user.id
+    );
+
+    if (!userWishlist) {
+      setWishlistItems([]);
+      return;
+    }
+
+    const items = userWishlist.items
+      .map((wishItem) =>
+        products.find((p) => p.id === wishItem.productId)
+      )
+      .filter(Boolean);
+
+    setWishlistItems(items);
+  }, [user]);
+
+  const navigate = useNavigate();
+
+  const [recommendedItems, setRecommendedItems] = useState([]);
+
+  useEffect(() => {
+    setRecommendedItems(
+      [...products]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 6)
+    );
+  }, []);
 
   return (
     <section className="px-6 md:px-12 lg:px-20 py-10 space-y-12">
@@ -80,20 +57,36 @@ const Wishlist = () => {
           WISHLIST ({wishlistItems.length})
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {wishlistItems.map((item) => (
-            <Card
-              key={item.id}
-              silderClassName={"w-full h-93"}
-              cardImage={item.image}
-              ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
-              cardTitle={item.title}
-              cardCategory={item.category}
-              cardPrice={item.price}
-              cardButton="Add to Cart"
-            />
-          ))}
-        </div>
+        {wishlistItems.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {wishlistItems.map((item) => (
+              <Card
+                key={item.id}
+                silderClassName={"w-full h-93"}
+                cardId={item.id}
+                cardImage={item.image}
+                ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
+                cardTitle={item.title}
+                cardCategory={item.category}
+                cardPrice={item.price}
+                cardButton="Add to Cart"
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-20 gap-4">
+            <p className="text-lg text-gray-600">
+              You don't have any products in your wishlist
+            </p>
+
+            <button
+              onClick={() => navigate("/shop")}
+              className="bg-[#5B4636] text-white px-6 py-2 rounded-md"
+            >
+              Shop Now
+            </button>
+          </div>
+        )}
       </div>
       <div>
         <div className="flex justify-between items-center mb-6">
@@ -114,6 +107,7 @@ const Wishlist = () => {
             <Card
               key={item.id}
               silderClassName={"w-full h-93"}
+              cardId={item.id}
               cardImage={item.image}
               ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
               cardTitle={item.title}

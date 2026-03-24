@@ -15,7 +15,7 @@ export const toggleWishlist = (userId, productId) => {
     };
     wishlist.push(userWishlist);
   } else {
-    const exists = userWishlist.items.find(
+    const exists = userWishlist.items.find( 
       (item) => item.productId === productId
     );
     if (exists) {

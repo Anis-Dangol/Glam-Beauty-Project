@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const productId = useParams();
   const [quantity, setQuantity] = useState(1);
   const [favourite, setFavourite] = useState(false);
-  const [showImage, setShowImage] = useState(1);
+  const [showImage, setShowImage] = useState(0);
   const [showAdded, setShowAdded] = useState(false);
 
   const currentProduct = products.find(
