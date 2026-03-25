@@ -4,13 +4,15 @@ import { getWishlist } from "../services/wishlistService";
 import products from "../data/product";
 import { useNavigate } from "react-router-dom";
 
-
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 import { useContext, useState, useEffect } from "react";
 
 const Wishlist = () => {
   const { user } = useContext(AuthContext);
   const [wishlistItems, setWishlistItems] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) return;
@@ -35,17 +37,29 @@ const Wishlist = () => {
     setWishlistItems(items);
   }, [user]);
 
-  const navigate = useNavigate();
-
   const [recommendedItems, setRecommendedItems] = useState([]);
 
   useEffect(() => {
     setRecommendedItems(
       [...products]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 6)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 8)
     );
   }, []);
+
+  const visibleCount = 4;
+
+  const handleNext = () => {
+    if (startIndex + visibleCount < recommendedItems.length) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
 
   return (
     <section className="px-6 md:px-12 lg:px-20 space-y-12">
@@ -59,7 +73,7 @@ const Wishlist = () => {
             {wishlistItems.map((item) => (
               <Card
                 key={item.id}
-                silderClassName={"w-full h-93"}
+                silderClassName={"w-full h-[372px]"}
                 cardId={item.id}
                 cardImage={item.image}
                 ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
@@ -85,34 +99,57 @@ const Wishlist = () => {
           </div>
         )}
       </div>
+
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h1 className="font-bold text-[#1F2937] text-xl">FOR YOU</h1>
+          <h1 className="font-bold text-[#1F2937] text-xl">
+            FOR YOU
+          </h1>
 
           <div className="flex gap-3">
-            <button className="bg-white border border-[#D6B89E] text-[#D6B89E] rounded-full h-10 w-10 flex items-center justify-center">
+            <button
+              onClick={handlePrev}
+              disabled={startIndex === 0}
+              className="bg-white border border-[#D6B89E] text-[#D6B89E] rounded-full h-10 w-10 flex items-center justify-center disabled:opacity-50"
+            >
               <IoChevronBack />
             </button>
 
-            <button className="bg-[#D6B89E] text-white rounded-full h-10 w-10 flex items-center justify-center">
+            <button
+              onClick={handleNext}
+              disabled={startIndex + visibleCount >= recommendedItems.length}
+              className="bg-[#D6B89E] text-white rounded-full h-10 w-10 flex items-center justify-center disabled:opacity-50"
+            >
               <IoChevronForward />
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {recommendedItems.map((item) => (
-            <Card
-              key={item.id}
-              silderClassName={"w-full h-93"}
-              cardId={item.id}
-              cardImage={item.image}
-              ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
-              cardTitle={item.title}
-              cardCategory={item.category}
-              cardPrice={item.price}
-              cardButton="Add to Cart"
-            />
-          ))}
+
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-300"
+            style={{
+              transform: `translateX(-${startIndex * (100 / visibleCount)}%)`,
+            }}
+          >
+            {recommendedItems.map((item) => (
+              <div
+                key={item.id}
+                className="min-w-[25%] px-3"
+              >
+                <Card
+                  silderClassName={"w-full"}
+                  cardId={item.id}
+                  cardImage={item.image}
+                  ImageClassName="w-full h-full object-cover rounded-lg shadow-md"
+                  cardTitle={item.title}
+                  cardCategory={item.category}
+                  cardPrice={item.price}
+                  cardButton="Add to Cart"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -21,7 +21,7 @@ const Card = ({
 }) => {
   const { user } = useContext(AuthContext);
   const [showAdded, setShowAdded] = useState(false);
-
+  console.log(user.id)
   const handleAddToCart = (userId, cardId) => {
     if (!checkCart(userId, cardId)) {
       addToCart(userId, cardId);
@@ -37,7 +37,8 @@ const Card = ({
   const currentProduct = products.find((p) => Number(p.id) == Number(cardId));
 
   useEffect(() => {
-    checkCart(user.id, currentProduct.id)
+    console.log(currentProduct?.id);
+    checkCart(user.id, currentProduct?.id)
       ? setShowAdded(true)
       : setShowAdded(false);
   }, [user]);
