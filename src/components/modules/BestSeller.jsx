@@ -1,40 +1,37 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Card from "../elements/Card";
-import { useEffect, useRef, useState } from "react";
-import Button from "../elements/Button";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import products from "../../data/product";
 
 const BestSeller = () => {
-  const [index, setIndex] = useState(0);
-  const [width, setWidth] = useState(0);
-  const elementRef = useRef(null);
+  const [translate, setTranslate] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth - 216);
+  
+  const cardWidth = 372;
+  const cardGap = 24;
 
-  const translateX = index * (width / 3);
+  const bestSellerProducts = products.filter((p) => p.isBestSeller);
+
+  const maxTranslate =
+    ((bestSellerProducts.length) * (cardWidth + cardGap)) - (screenWidth);
 
   const nextSlide = () => {
-    // if (index < bestSellerArray.length - 3) {
-    //   setIndex(index + 1);
-    // }
+    setTranslate((prev) => Math.min(prev + 372, maxTranslate));
   };
 
   const prevSlide = () => {
-    if (index > 0) {
-      setIndex(index - 1);
-    }
+    setTranslate((prev) => Math.max(prev - 372, 0));
   };
 
   useEffect(() => {
-    if (elementRef.current) {
-      const elementWidth = elementRef.current.offsetWidth;
-      setWidth(elementWidth);
-    }
+    const handleResize = () => setScreenWidth(window.innerWidth - 216);
+    window.addEventListener("resize", handleResize);
   }, []);
 
   return (
     <section className="px-27 flex flex-col gap-4">
       <div>
-        <h2 className="py-2">BESTSELLER</h2>
+        <h2 className="py-2 text-xl font-bold text-gray-800">BESTSELLER</h2>
         <div className="flex justify-between items-center py-2">
           <p className="font-bold text-base text-primary-300 tracking-[10%]">
             SHOP NOW
@@ -50,13 +47,16 @@ const BestSeller = () => {
               onClick={nextSlide}
               className="hover:bg-[#D6B89E] text-[#D6B89E] hover:text-white cursor-pointer border border-[#D6B89E] rounded-[50%]"
             >
-              <IoIosArrowForward size={40} className="" />
+              <IoIosArrowForward size={40} />
             </span>
           </div>
         </div>
       </div>
-      <div className="w-full overflow-x-hidden" ref={elementRef}>
-        <div className={`flex gap-6 `}>
+      <div className="w-full overflow-x-hidden">
+        <div
+          className="flex gap-6 transition-transform duration-300 "
+          style={{ transform: `translateX(-${translate}px)` }}
+        >
           {products.map((c, i) => {
             return (
               c.isBestSeller === true && (
@@ -74,13 +74,6 @@ const BestSeller = () => {
               )
             );
           })}
-          <Link to={"/shop"} className="flex flex-row justify-center">
-            <Button
-              className={"border border-primary-300 text-primary-300 py-4!"}
-            >
-              See More
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

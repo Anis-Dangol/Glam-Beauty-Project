@@ -189,7 +189,7 @@ const products = [
     brand: "Aroma",
     image: productImage1,
     images: [productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 14,
@@ -231,7 +231,7 @@ const products = [
     brand: "Aroma",
     image: productImage4,
     images: [productImage4],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 17,
@@ -245,7 +245,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage1,
     images: [productImage1, productImage2, productImage3],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 18,
@@ -259,7 +259,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage2,
     images: [productImage2, productImage3, productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 19,
@@ -302,7 +302,7 @@ const products = [
     brand: "GlowPro",
     image: productImage5,
     images: [productImage5, productImage6],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 22,
@@ -330,7 +330,7 @@ const products = [
     brand: "BlushCo",
     image: productImage1,
     images: [productImage1, productImage2],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 24,
@@ -373,7 +373,7 @@ const products = [
     brand: "SkinGlow",
     image: productImage3,
     images: [productImage3],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 27,
@@ -387,7 +387,7 @@ const products = [
     brand: "SunCare",
     image: productImage5,
     images: [productImage5],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 28,
@@ -401,7 +401,7 @@ const products = [
     brand: "SkinGlow",
     image: productImage6,
     images: [productImage6],
-    isBestSeller: true
+    isBestSeller: false
   },
 
   {
@@ -416,7 +416,7 @@ const products = [
     brand: "Aroma",
     image: productImage1,
     images: [productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 30,
@@ -458,7 +458,7 @@ const products = [
     brand: "Aroma",
     image: productImage4,
     images: [productImage4],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 33,
@@ -472,7 +472,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage1,
     images: [productImage1, productImage2, productImage3],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 34,
@@ -486,7 +486,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage2,
     images: [productImage2, productImage3, productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 35,
@@ -529,7 +529,7 @@ const products = [
     brand: "GlowPro",
     image: productImage5,
     images: [productImage5, productImage6],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 38,
@@ -557,7 +557,7 @@ const products = [
     brand: "BlushCo",
     image: productImage1,
     images: [productImage1, productImage2],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 40,
@@ -586,7 +586,7 @@ const products = [
     brand: "SkinGlow",
     image: productImage3,
     images: [productImage3],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 42,
@@ -614,7 +614,7 @@ const products = [
     brand: "SunCare",
     image: productImage5,
     images: [productImage5],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 44,
@@ -628,7 +628,7 @@ const products = [
     brand: "SkinGlow",
     image: productImage6,
     images: [productImage6],
-    isBestSeller: true
+    isBestSeller: false
   },
 
   {
@@ -643,7 +643,7 @@ const products = [
     brand: "Aroma",
     image: productImage1,
     images: [productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 46,
@@ -685,7 +685,7 @@ const products = [
     brand: "Aroma",
     image: productImage4,
     images: [productImage4],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 49,
@@ -713,7 +713,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage1,
     images: [productImage1, productImage2, productImage3],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 50,
@@ -727,7 +727,7 @@ const products = [
     brand: "Glam Beauty",
     image: productImage2,
     images: [productImage2, productImage3, productImage1],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 51,
@@ -756,7 +756,7 @@ const products = [
     brand: "GlowPro",
     image: productImage5,
     images: [productImage5, productImage6],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 54,
@@ -784,7 +784,7 @@ const products = [
     brand: "BlushCo",
     image: productImage1,
     images: [productImage1, productImage2],
-    isBestSeller: true
+    isBestSeller: false
   },
   {
     id: 56,
