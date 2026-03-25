@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Shop = () => {
   const navigate = useNavigate();
   return (
-    <section className="px-6 md:px-12 lg:px-27 py-10 space-y-12">
+    <section className="px-6 md:px-12 lg:px-27 space-y-12">
       {categories.map((cat) => {
         const filteredProducts = products.filter(
           (item) => item.category === cat.name,
@@ -33,6 +33,7 @@ const Shop = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filteredProducts.slice(0, 4).map((item) => (
                 <Card
+                  cardId={item.id}
                   key={item.id}
                   cardId={item.id}
                   cardImage={item.image}

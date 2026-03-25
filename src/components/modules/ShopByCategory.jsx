@@ -1,6 +1,6 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import  { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import categories from "../../data/categories";
 
 const ShopByCategory = () => {
@@ -19,6 +19,16 @@ const ShopByCategory = () => {
     { length: visibleCount },
     (_, i) => categories[(startIndex + i) % categories.length]
   );
+
+  const navigate=useNavigate();
+
+  const handleNavigate = (route) =>{
+    navigate(`/${route}`)
+      window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
 
   return (
     <section className="px-27 flex flex-col gap-4">
@@ -41,8 +51,9 @@ const ShopByCategory = () => {
       <div className="flex gap-6">
         {visibleCards.map((c) => (
           <Link 
-          to={`/shop/${(c.name === "face") ? (""): ((c.name).split(" ").join(""))}`}
+          to={`/${c.route}`}
           key={c.id} 
+          onClick={() =>handleNavigate(c.route)}
           className="w-full h-98 relative">
             <img
               src={c.image}

@@ -16,7 +16,9 @@ const categories = [
     id: 2,
     name: "face",
     label: "Face",
-    image: categoryImage2
+    image: categoryImage2,
+    route: "shop"
+
   },
   {
     id: 3,

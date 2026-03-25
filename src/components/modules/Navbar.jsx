@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white flex justify-between items-center py-4 px-28">
       <div>
-        <Logo />
+        <Logo size={"xl"}/>
       </div>
 
       <div className="p-4">
