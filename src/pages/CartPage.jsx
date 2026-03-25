@@ -92,11 +92,13 @@ const CartPage = () => {
                 <tr key={foundProduct.id}>
                   <th scope="row" className="font-medium whitespace-nowrap">
                     <div className="flex flex-row items-center gap-3">
-                      <img
-                        className="h-22"
+                      <div className="h-22 w-30">
+                        <img
+                        className="h-full w-full object-cover"
                         src={foundProduct.image}
                         alt="MatteLipGloss"
                       />
+                      </div>
                       <span className="w-full text-center text-gray-800 font-bold text-base">
                         {foundProduct.title}
                       </span>
