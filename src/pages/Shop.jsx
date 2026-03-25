@@ -24,7 +24,7 @@ const Shop = () => {
 
               <button
                 onClick={() => navigate(`/${cat.route}`)}
-                className="flex items-center gap-2 text-sm text-primary-300 hover:underline"
+                className="flex items-center gap-2 text-sm text-primary-3 text-gray-800/90 hover:text-shadow-sm/10 hover:text-gray-800  cursor-pointer"
               >
                 See More <FaLongArrowAltRight />
               </button>
@@ -35,12 +35,12 @@ const Shop = () => {
                 <Card
                   cardId={item.id}
                   key={item.id}
+                  cardId={item.id}
                   cardImage={item.image}
                   cardTitle={item.title}
                   cardCategory={item.category}
-                  cardPrice={`$${item.price}`}
+                  cardPrice={`${item.price}`}
                   cardButton="Add to Cart"
-                  imageCenterLabel={item.isBestSeller ? "BEST SELLER" : ""}
                   imageCenterLabelClass="text-white text-sm bg-black/60 px-3 py-1 rounded"
                 />
               ))}
