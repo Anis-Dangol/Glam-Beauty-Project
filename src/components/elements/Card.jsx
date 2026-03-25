@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { addToCart, checkCart } from "../../services/cartService";
 import { useContext, useEffect, useState } from "react";
@@ -21,8 +21,18 @@ const Card = ({
 }) => {
   const { user } = useContext(AuthContext);
   const [showAdded, setShowAdded] = useState(false);
+  const navigate = useNavigate();
 
   const handleAddToCart = (userId, cardId) => {
+    if (!userId) {
+      navigate("/login");
+      toast.message("Please Login!", {
+        description: `Login to use add to cart`,
+        duration: 4000,
+        type: "success",
+      });
+      return;
+    }
     if (!checkCart(userId, cardId)) {
       addToCart(userId, cardId);
       setShowAdded(true);
@@ -37,7 +47,7 @@ const Card = ({
   const currentProduct = products.find((p) => Number(p.id) == Number(cardId));
 
   useEffect(() => {
-    checkCart(user.id, currentProduct.id)
+    checkCart(user?.id, currentProduct?.id)
       ? setShowAdded(true)
       : setShowAdded(false);
   }, [user]);
@@ -69,13 +79,13 @@ const Card = ({
             <p className="px-4 py-2 font-bold text-base text-gray-400">
               Category: {cardCategory}
             </p>
-            <p className="p-4 font-normal text-sm text-gray-800">{`$${cardPrice}`}</p>
+            <p className="p-4 font-normal text-sm text-gray-800">{`$ ${cardPrice}`}</p>
           </div>
         )}
         {cardButton && (
           <Button
             buttonId={cardId}
-            onClick={() => handleAddToCart(user.id, cardId)}
+            onClick={() => handleAddToCart(user?.id, cardId)}
             className={"border border-primary-300 text-primary-300 py-4!"}
           >
             {user

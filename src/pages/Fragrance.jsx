@@ -23,7 +23,7 @@ function Fragrance() {
   );
 
   return (
-    <section className="px-28">
+    <section className="px-27">
       <h1 className="text-2xl font-bold mb-6">Fragrance</h1>
       <div className="grid grid-cols-4 gap-5">
         {currentItems.map((item) => (
